@@ -2,6 +2,12 @@ var app = angular.module("QuizPersonal", ["ngRoute","ngStorage","timer"]);
 app.config(function($routeProvider) {
     $routeProvider
 
+        .when("/login", {
+            templateUrl: "js/views/login.html",
+            controller: "loginController"
+        })
+
+
         .when("/quiz", {
             templateUrl: "js/views/quiz.html",
             controller: "quizController"
@@ -13,9 +19,9 @@ app.config(function($routeProvider) {
 
 
         .otherwise({
-            redirectTo: '/login',
-            templateUrl: 'js/views/login.html',
-            controller: 'loginController'
+            redirectTo: '/preview',
+            templateUrl: 'js/views/preview.html',
+            controller : "previewController"
         });
 });
 

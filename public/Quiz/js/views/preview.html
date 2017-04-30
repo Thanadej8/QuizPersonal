@@ -1,0 +1,52 @@
+<nav class="navbar navbar-default" >
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">
+                <img src="central_logo.jpg" alt="Central Logo">
+            </a>
+        </div>
+        <div id="navbar1" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a ng-click="go('/login')" style="cursor: pointer">Login</a></li>
+
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+    <!--/.container-fluid -->
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="form-preview">
+                <div class="page-header">
+                    <h1>Quiz</h1>
+                </div>
+                <blockquote>
+                    <p>Quiz นี้จะมีทั้งหมด 21 ข้อ ทำครบ 21 ข้อ คุณจะได้ทราบว่าคุณเป็นบุคคลประเภทไหน</p>
+                </blockquote>
+                <blockquote>
+                    <p>ก่อนจะทำ Quiz จะต้องทำการ <a style="cursor: pointer" ng-click="go('/login')">Login</a> ก่อน </p>
+                </blockquote>
+                <blockquote>
+                    <p>วิธีทำตอบคำถามเลือกคำตอบข้อใดข้อหนึ่งแล้วกด NEXT มุมขวาบน</p>
+                </blockquote>
+                <blockquote>
+                    <p>คำถามแต่ละข้อจะมีเวลาเพียง 30 วินาที ต่อ หนึ่งข้อ หากท่านไม่ตอบข้อนั้นภายในเวลาที่กำหนดระบบจะไปข้อถัดไปโดยทันที</p>
+                </blockquote>
+                <blockquote>
+                    <p>ทำครบ 21 ข้อแล้ว ระบบจะประมวลผลและแจ้งท่านให้ทราบว่าท่านจัดอยู่บุคคลประเภทไหน</p>
+                </blockquote>
+            </div>
+
+
+        </div>
+    </div>
+</div>

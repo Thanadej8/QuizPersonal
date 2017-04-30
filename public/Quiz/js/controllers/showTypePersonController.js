@@ -4,6 +4,9 @@ app.controller('showTypePersonController',function($scope,$localStorage,$routePa
     $localStorage.user_id = $routeParams.user_id;
     console.log($localStorage.user_id);
 
+    $scope.go = function (path) {
+        $location.path(path);
+    }
 
 
 

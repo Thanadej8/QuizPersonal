@@ -31,6 +31,12 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
         }
 
     ];
+
+    $scope.go = function (path) {
+        $location.path(path);
+    }
+
+
     //getProblem($localStorage.user.id);
     function getProblem(id) {
 

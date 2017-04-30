@@ -24,6 +24,9 @@ app.controller('loginController',function($scope,$localStorage,$routeParams,$htt
 
     };
 
+    $scope.go = function (path) {
+        $location.path(path);
+    }
 
 
 });
