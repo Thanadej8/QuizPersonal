@@ -1,0 +1,84 @@
+body{
+    background-color: #e6e9ed;
+    background-color: #c2001b;
+}
+
+.form-login{
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    display: table;
+    width: 100%;
+    padding: 15px;
+}
+
+.problem{
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    display: block;
+    width: 100%;
+    overflow-x: hidden;
+
+}
+.problem .header-problem{
+    display: block;
+    border-bottom: 1px solid #EEEEEE;
+    height: 50px;
+    padding: 10px;
+}
+.problem .header-problem h4{
+    margin: 5px 0 0 5px;
+    float: left;
+
+}
+.problem .header-problem p.time-problem{
+    text-align: center;
+    line-height: 30px;
+}
+.problem .header-problem button.next-problem{
+    float: right;
+
+}
+.problem .question-name{
+    padding: 15px;
+    display: block;
+}
+.problem .question-name p{
+    display: inline;
+}
+.problem .footer-problem{
+    display: table;
+    height:60px;
+    width:100%;
+    padding: 10px;
+
+    border-top: 1px solid #EEEEEE;
+
+}
+.problem .footer-problem button{
+    margin: 5px 0 5px 0;
+    width: 100%;
+
+}
+.problem .footer-problem button span{
+    float: left;
+
+}
+.problem .footer-problem button i{
+    float: right;
+
+}
+.navbar-brand {
+    padding: 0px;
+
+}
+.navbar-brand>img {
+    height: 100%;
+    padding: 10px;
+    width: auto;
+}
+.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand{
+    margin-left: 0;
+}
+
