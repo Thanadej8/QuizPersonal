@@ -1,8 +1,8 @@
 body{
-    background-color: #e6e9ed;
+
     background-color: #c2001b;
 }
-.form-preview{
+.form-all{
     background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
@@ -11,14 +11,7 @@ body{
     padding: 15px;
 }
 
-.form-login{
-    background-color: #fff;
-    border-radius: 4px;
-    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-    display: table;
-    width: 100%;
-    padding: 15px;
-}
+
 
 .problem{
     background-color: #fff;
@@ -90,3 +83,10 @@ body{
     margin-left: 0;
 }
 
+
+table thead tr th {
+    text-align: center;
+}
+table tbody tr td {
+    text-align: center;
+}

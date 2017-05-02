@@ -16,6 +16,10 @@ app.config(function($routeProvider) {
             templateUrl: "js/views/showTypePerson.html",
             controller: "showTypePersonController"
         })
+        .when("/admin", {
+            templateUrl: "js/views/admin.html",
+            controller: "adminController"
+        })
 
 
         .otherwise({
