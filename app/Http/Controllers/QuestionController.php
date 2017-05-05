@@ -22,6 +22,7 @@ class QuestionController extends Controller
 
     public function getQuestionByID($id)
     {
-        $users = User::all()->where('id', '=', $id);
+        $question = Question::all()->where('id', '=', $id);
+        return $question;
     }
 }

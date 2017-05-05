@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+//use Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,7 @@ Route::post('/question/add', 'QuestionController@addQuestion');
 
 Route::post('/user/add', 'UserController@addUser');
 
-Route::get('/user', 'UserController@index');
+Route::get('/user', 'UserController@getUser');
 
 Route::get('/user/{id}', 'UserController@getUserByID');
 

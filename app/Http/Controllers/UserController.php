@@ -10,18 +10,20 @@ class UserController extends Controller
 
     public function index()
     {
-        $user = User::all();
-        return $user;
+        $users = User::all();
+        return $users;
     }
 
     public function getUser()
     {
-        $users = User::all()->select('username', 'first_name', 'last_name', 'role');
+        $users = User::all();
+        return $users;
     }
 
     public function getUserByID($id)
     {
-        $users = User::all()->select('username', 'first_name', 'last_name', 'role')->where('id', '=', $id);
+        $users = User::all();
+        return $users;
     }
 
     public function addUser(Request $request)
@@ -35,8 +37,9 @@ class UserController extends Controller
             'password' => $events['password'],
             'role' => $events['role'],
         ];
-        User::create($arrData);
-        return response()->json(['msg' => 'post complete']);
+        $user = User::create($arrData);
+        return $user;
+        //return $request->all();
     }
 
     public function curlGetRequest($url)
