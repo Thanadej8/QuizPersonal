@@ -16,3 +16,13 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/question/add', 'QuestionController@addQuestion');
+
+Route::post('/user/add', 'UserController@addUser');
+
+Route::get('/user', 'UserController@index');
+
+Route::get('/user/{id}', 'UserController@getUserByID');
+
+Route::get('/question/{id}', 'QuestionController@getQuestionByID');

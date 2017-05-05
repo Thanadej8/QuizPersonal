@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -9,12 +10,33 @@ class UserController extends Controller
 
     public function index()
     {
-        
+        $user = User::all();
+        return $user;
     }
 
     public function getUser()
     {
         $users = User::all()->select('username', 'first_name', 'last_name', 'role');
+    }
+
+    public function getUserByID($id)
+    {
+        $users = User::all()->select('username', 'first_name', 'last_name', 'role')->where('id', '=', $id);
+    }
+
+    public function addUser(Request $request)
+    {
+        $events = $request->all();
+        $arrData = [
+            'first_name' => $events['first_name'],
+            'last_name' => $events['last_name'],
+            'citizen_id' => $events['citizen_id'],
+            'username' => $events['username'],
+            'password' => $events['password'],
+            'role' => $events['role'],
+        ];
+        User::create($arrData);
+        return response()->json(['msg' => 'post complete']);
     }
 
     public function curlGetRequest($url)
