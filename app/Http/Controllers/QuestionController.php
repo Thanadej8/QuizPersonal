@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Question;
 use Illuminate\Http\Request;
+use Excel;
 
 class QuestionController extends Controller
 {
@@ -24,5 +25,20 @@ class QuestionController extends Controller
     {
         $question = Question::all()->where('id', '=', $id);
         return $question;
+    }
+
+    public function readExcel()
+    {
+        $path =  "D:\\xampp\\htdocs\\QuizPersonal\\public\\Example.xlsx";
+        $data = Excel::load($path, function ($reader){
+        })->get();
+
+        $Quiz = [];
+
+    }
+
+    public function addQuiz(Request $request){
+
+
     }
 }
