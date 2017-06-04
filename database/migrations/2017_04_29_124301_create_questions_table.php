@@ -17,7 +17,9 @@ class CreateQuestionsTable extends Migration
             $table->increments('id');
             $table->string('question_name');
             $table->string('choice1');
+            $table->string('choice1_type');
             $table->string('choice2');
+            $table->string('choice2_type');
             $table->string('set');
         });
     }

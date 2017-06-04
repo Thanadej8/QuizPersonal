@@ -10,8 +10,8 @@ class QuestionController extends Controller
 {
     public function index()
     {
-        $question = Question::all();
-        return $question;
+        $questions = Question::all();
+        return $questions;
     }
 
     public function addQuestion(Request $request)
