@@ -22,23 +22,28 @@ class UserController extends Controller
 
     public function getUserByID($id)
     {
-        $users = User::all();
-        return $users;
+        $user = User::find($id);
+        return $user;
     }
 
     public function addUser(Request $request)
     {
         $events = $request->all();
         $arrData = [
-            'first_name' => $events['first_name'],
-            'last_name' => $events['last_name'],
-            'citizen_id' => $events['citizen_id'],
+            'name' => $events['first_name'],
             'username' => $events['username'],
             'role' => $events['role'],
         ];
         $user = User::create($arrData);
         return $user;
         //return $request->all();
+    }
+
+    public function login(Request $request)
+    {
+        $events = $request->all();
+        $user = User::where('username', $request['username']);
+        return $user;
     }
 
     public function curlGetRequest($url)
