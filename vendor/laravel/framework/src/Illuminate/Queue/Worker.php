@@ -295,12 +295,6 @@ class Worker
      * @param  \Exception  $e
      * @return void
      */
-    protected function stopWorkerIfLostConnection($e)
-    {
-        if ($this->causedByLostConnection($e)) {
-            $this->shouldQuit = true;
-        }
-    }
 
     /**
      * Process the given job from the queue.
