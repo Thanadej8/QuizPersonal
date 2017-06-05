@@ -22,8 +22,13 @@ Route::post('/question/add', 'QuestionController@addQuestion');
 
 Route::post('/user/add', 'UserController@addUser');
 
+Route::post('/answer', 'AnswerController@answerQuestion');
+
+Route::post('/user/login', 'UserController@login');
+
 Route::get('/user', 'UserController@getUser');
 
 Route::get('/user/{id}', 'UserController@getUserByID');
 
 Route::get('/question/{id}', 'QuestionController@getQuestionByID');
+
