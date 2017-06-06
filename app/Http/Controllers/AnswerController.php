@@ -24,8 +24,12 @@ class AnswerController extends Controller
             'answer_type' => $events['answer'],
             'set' => $events['set'],
         ];
-
-        $answer = Answer::create($arrData);
+        if($events['problem_id' === '22']){
+            Answer::where('user_id', $events['user_id'])->where('question_id', $events['problem_id'])->update(['answer_type' => $events['answer']]);
+        }
+        else{
+            Answer::create($arrData);
+        }
         if($events['problem_id'] !== '22') {
             $this->updateNewQuestion($events['problem_id'], $events['user_id']);
         }
@@ -67,7 +71,7 @@ class AnswerController extends Controller
 
     public function answerQuestionAfterTimeOut($id)
     {
-        $questions = Answer::where('user_id', $id)->where('answer_type','no')->select('question_id')->get();
+        $questions = Answer::where('user_id', $id)->where('answer_type','no')->select('question_id')->first();
         return $questions;
     }
 
