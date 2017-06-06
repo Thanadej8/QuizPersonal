@@ -31,7 +31,7 @@ class UserController extends Controller
     {
         $events = $request->all();
         $arrData = [
-            'name' => $events['first_name'],
+            'name' => $events['name'],
             'username' => $events['username'],
             'role' => $events['role'],
         ];
