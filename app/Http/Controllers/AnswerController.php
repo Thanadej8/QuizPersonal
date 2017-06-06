@@ -65,7 +65,7 @@ class AnswerController extends Controller
                 User::where('user_id', $events['user_id'])->update(['person_type3' => 'P']);
             }
         }
-        return User::where('user_id', $events['user_id'])->select('question_id')->get();
+        return User::where('user_id', $events['user_id'])->first();
 
     }
 
