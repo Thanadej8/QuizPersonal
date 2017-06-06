@@ -26,9 +26,11 @@ class AnswerController extends Controller
         ];
 
         $answer = Answer::create($arrData);
-        $this->updateNewQuestion($events['problem_id'], $events['user_id']);
+        if($events['problem_id'] !== '22') {
+            $this->updateNewQuestion($events['problem_id'], $events['user_id']);
+        }
         //$answer = $events['user_id'];
-        if($events['problem_id'] === Question::all()->last()->question_id){
+        if(Answer::where('user_id', $events['user_id'])->where('answer_type','!=', '')->count() === 21){
             //Calculate for Set 1
             $set1N = Answer::where('user_id', $events['user_id'])->where('answer_type', 'N')->count();
             $set1S = Answer::where('user_id', $events['user_id'])->where('answer_type', 'S')->count();
@@ -43,24 +45,32 @@ class AnswerController extends Controller
             $set2F = Answer::where('user_id', $events['user_id'])->where('answer_type', 'F')->count();
             $set2T = Answer::where('user_id', $events['user_id'])->where('answer_type', 'T')->count();
             if($set2F > $set2T){
-                User::where('user_id', $events['user_id'])->update(['person_type1' => 'F']);
+                User::where('user_id', $events['user_id'])->update(['person_type2' => 'F']);
             }
             else{
-                User::where('user_id', $events['user_id'])->update(['person_type1' => 'T']);
+                User::where('user_id', $events['user_id'])->update(['person_type2' => 'T']);
             }
 
             //Calculate for Set 3
             $set3J = Answer::where('user_id', $events['user_id'])->where('answer_type', 'J')->count();
             $set3P = Answer::where('user_id', $events['user_id'])->where('answer_type', 'P')->count();
             if($set3J > $set3P){
-                User::where('user_id', $events['user_id'])->update(['person_type1' => 'J']);
+                User::where('user_id', $events['user_id'])->update(['person_type3' => 'J']);
             }
             else{
-                User::where('user_id', $events['user_id'])->update(['person_type1' => 'P']);
+                User::where('user_id', $events['user_id'])->update(['person_type3' => 'P']);
             }
         }
         return User::where('user_id', $events['user_id'])->first();
 
+    }
+
+    public function answerQuestionAfterTimeOut(Request $request)
+    {
+        $events = $request->all();
+        $user_id = $events['user_id'];
+        $questions = Answer::where('user_id', $user_id)->where('answer','')->select('question_id')->get();
+        return $questions;
     }
 
     public function updateNewQuestion($question_id, $user_id)

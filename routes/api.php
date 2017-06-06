@@ -24,6 +24,8 @@ Route::post('/user/add', 'UserController@addUser');
 
 Route::post('/answer', 'AnswerController@answerQuestion');
 
+Route::post('/answer/after', 'AnswerController@answerQuestionAfterTimeOut');
+
 Route::post('/user/login', 'UserAuthController@loginUser');
 
 Route::get('/user', 'UserController@getUser');
