@@ -33,3 +33,4 @@ Route::get('/user/{id}', 'UserController@getUserByID');
 Route::get('/question/{id}', 'QuestionController@getQuestionByID');
 
 Route::get('/answer/after/{id}', 'AnswerController@answerQuestionAfterTimeOut');
+
