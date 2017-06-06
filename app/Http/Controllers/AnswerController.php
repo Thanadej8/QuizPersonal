@@ -30,7 +30,7 @@ class AnswerController extends Controller
             $this->updateNewQuestion($events['problem_id'], $events['user_id']);
         }
         //$answer = $events['user_id'];
-        if(Answer::where('user_id', $events['user_id'])->where('answer_type','!=', '')->count() === 21){
+        if(Answer::where('user_id', $events['user_id'])->where('answer_type','!=', 'no')->count() === 21){
             //Calculate for Set 1
             $set1N = Answer::where('user_id', $events['user_id'])->where('answer_type', 'N')->count();
             $set1S = Answer::where('user_id', $events['user_id'])->where('answer_type', 'S')->count();
@@ -67,7 +67,7 @@ class AnswerController extends Controller
 
     public function answerQuestionAfterTimeOut($id)
     {
-        $questions = Answer::where('user_id', $id)->where('answer','')->select('question_id')->get();
+        $questions = Answer::where('user_id', $id)->where('answer_type','no')->select('question_id')->get();
         return $questions;
     }
 
