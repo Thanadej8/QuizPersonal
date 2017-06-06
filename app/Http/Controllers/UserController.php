@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-
+use Excel;
+use Log;
 class UserController extends Controller
 {
 
@@ -73,5 +74,27 @@ class UserController extends Controller
         $date = $temp[0];
         $date = str_replace('-', '', $date);
         return $date;
+    }
+
+    public function readExcel()
+    {
+        $path =  "D:\\xampp\\htdocs\\QuizPersonal\\public\\Data2.xlsx";
+        $data = Excel::load($path, function ($reader){
+        })->get();
+
+        $DataUser = [];
+
+        if(!empty($data) && $data->count()){
+            foreach ($data as $d) {
+                $DataUser[] = ['username' => $d->username, 'name' => $d->name];
+                //Log::info('###### '.$d->name);
+            }
+        }
+
+        foreach ($DataUser as $User){
+            User::firstOrCreate($User);
+        }
+
+        return 'finish';
     }
 }

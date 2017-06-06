@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('person_type1')->nullable();
             $table->string('person_type2')->nullable();
             $table->string('person_type3')->nullable();
-            $table->string('role');
+            $table->string('role')->nullable();
             $table->timestamps();
         });
     }
