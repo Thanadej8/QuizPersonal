@@ -65,11 +65,9 @@ class AnswerController extends Controller
 
     }
 
-    public function answerQuestionAfterTimeOut(Request $request)
+    public function answerQuestionAfterTimeOut($id)
     {
-        $events = $request->all();
-        $user_id = $events['user_id'];
-        $questions = Answer::where('user_id', $user_id)->where('answer','')->select('question_id')->get();
+        $questions = Answer::where('user_id', $id)->where('answer','')->select('question_id')->get();
         return $questions;
     }
 
