@@ -30,8 +30,8 @@ class AnswerController extends Controller
         //$answer = $events['user_id'];
         if($events['problem_id'] === Question::all()->last()->question_id){
             //Calculate for Set 1
-            $set1N = Answer::where('user_id', $events['user_id'])->where('set', '1')->count('N');
-            $set1S = Answer::where('user_id', $events['user_id'])->where('set', '1')->count('S');
+            $set1N = Answer::where('user_id', $events['user_id'])->where('answer_type', 'N')->count();
+            $set1S = Answer::where('user_id', $events['user_id'])->where('answer_type', 'S')->count();
             if($set1N > $set1S){
                 User::where('user_id', $events['user_id'])->update(['person_type1' => 'N']);
             }
@@ -40,8 +40,8 @@ class AnswerController extends Controller
             }
 
             //Calculate for Set 2
-            $set2F = Answer::where('user_id', $events['user_id'])->where('set', '2')->count('F');
-            $set2T = Answer::where('user_id', $events['user_id'])->where('set', '2')->count('T');
+            $set2F = Answer::where('user_id', $events['user_id'])->where('answer_type', 'F')->count();
+            $set2T = Answer::where('user_id', $events['user_id'])->where('answer_type', 'T')->count();
             if($set2F > $set2T){
                 User::where('user_id', $events['user_id'])->update(['person_type1' => 'F']);
             }
@@ -50,8 +50,8 @@ class AnswerController extends Controller
             }
 
             //Calculate for Set 3
-            $set3J = Answer::where('user_id', $events['user_id'])->where('set', '3')->count('J');
-            $set3P = Answer::where('user_id', $events['user_id'])->where('set', '3')->count('P');
+            $set3J = Answer::where('user_id', $events['user_id'])->where('answer_type', 'J')->count();
+            $set3P = Answer::where('user_id', $events['user_id'])->where('answer_type', 'P')->count();
             if($set3J > $set3P){
                 User::where('user_id', $events['user_id'])->update(['person_type1' => 'J']);
             }
