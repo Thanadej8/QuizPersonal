@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Answer;
+use App\Question;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -27,6 +28,37 @@ class AnswerController extends Controller
         $answer = Answer::create($arrData);
         $this->updateNewQuestion($events['problem_id'], $events['user_id']);
         //$answer = $events['user_id'];
+        if($events['problem_id'] === Question::all()->last()->question_id){
+            //Calculate for Set 1
+            $set1N = Answer::where('user_id', $events['user_id'])->where('set', '1')->count('N');
+            $set1S = Answer::where('user_id', $events['user_id'])->where('set', '1')->count('S');
+            if($set1N > $set1S){
+                User::where('user_id', $events['user_id'])->update(['person_type1' => 'N']);
+            }
+            else{
+                User::where('user_id', $events['user_id'])->update(['person_type1' => 'S']);
+            }
+
+            //Calculate for Set 2
+            $set2F = Answer::where('user_id', $events['user_id'])->where('set', '2')->count('F');
+            $set2T = Answer::where('user_id', $events['user_id'])->where('set', '2')->count('T');
+            if($set2F > $set2T){
+                User::where('user_id', $events['user_id'])->update(['person_type1' => 'F']);
+            }
+            else{
+                User::where('user_id', $events['user_id'])->update(['person_type1' => 'T']);
+            }
+
+            //Calculate for Set 3
+            $set3J = Answer::where('user_id', $events['user_id'])->where('set', '3')->count('J');
+            $set3P = Answer::where('user_id', $events['user_id'])->where('set', '3')->count('P');
+            if($set3J > $set3P){
+                User::where('user_id', $events['user_id'])->update(['person_type1' => 'J']);
+            }
+            else{
+                User::where('user_id', $events['user_id'])->update(['person_type1' => 'P']);
+            }
+        }
         return User::where('user_id', $events['user_id'])->first();
 
     }
