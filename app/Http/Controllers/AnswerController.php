@@ -24,13 +24,13 @@ class AnswerController extends Controller
             'answer_type' => $events['answer'],
             'set' => $events['set'],
         ];
-        if(User::where('user_id', $events['user_id'])->select('question_id') === '22'){
+        if(User::where('user_id', $events['user_id'])->select('question_id')->get() === '22'){
             Answer::where('user_id', $events['user_id'])->where('question_id', $events['problem_id'])->update(['answer_type' => $events['answer']]);
         }
         else{
             Answer::create($arrData);
         }
-        if(User::where('user_id', $events['user_id'])->select('question_id') !== '22') {
+        if(User::where('user_id', $events['user_id'])->select('question_id')->get() !== '22') {
             $this->updateNewQuestion($events['problem_id'], $events['user_id']);
         }
         //$answer = $events['user_id'];
@@ -65,7 +65,7 @@ class AnswerController extends Controller
                 User::where('user_id', $events['user_id'])->update(['person_type3' => 'P']);
             }
         }
-        return User::where('user_id', $events['user_id'])->first();
+        return User::where('user_id', $events['user_id'])->select('question_id')->get();
 
     }
 
@@ -77,11 +77,9 @@ class AnswerController extends Controller
 
     public function updateNewQuestion($question_id, $user_id)
     {
-        if(User::where('user_id', $user_id)->select('question_id') !== '22'){
             $q_id = intval($question_id) + 1;
             $q_id = strval($q_id);
             User::where('user_id', $user_id)->update(['question_id' => $q_id]);
-        }
-        
+
     }
 }
