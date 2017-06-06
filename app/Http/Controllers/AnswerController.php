@@ -72,7 +72,7 @@ class AnswerController extends Controller
 
     public function answerQuestionAfterTimeOut($id)
     {
-        $questions = Answer::where('user_id', $id)->where('answer_type','no')->select('question_id')->first();
+        $questions = Answer::where('user_id', $id)->where('answer_type','no')->select('question_id')->get();
         return $questions;
     }
 
