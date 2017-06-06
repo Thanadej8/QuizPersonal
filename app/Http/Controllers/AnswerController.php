@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Answer;
 
 class AnswerController extends Controller
 {
@@ -31,6 +32,6 @@ class AnswerController extends Controller
     {
         $q_id = intval($question_id) + 1;
         $q_id = strval($q_id);
-        User::where('user_id', $user_id)->update('question_id',$q_id);
+        User::where('user_id', $user_id)->update(['question_id' => $q_id]);
     }
 }
