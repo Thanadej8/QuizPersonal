@@ -24,13 +24,14 @@ class AnswerController extends Controller
             'answer_type' => $events['answer'],
             'set' => $events['set'],
         ];
-        if(User::where('user_id', $events['user_id'])->select('question_id')->get() === '22'){
+        $user = User::where('user_id', $events['user_id'])->first();
+        if($user->question_id === '22'){
             Answer::where('user_id', $events['user_id'])->where('question_id', $events['problem_id'])->update(['answer_type' => $events['answer']]);
         }
         else{
             Answer::create($arrData);
         }
-        if(User::where('user_id', $events['user_id'])->select('question_id')->get() !== '22') {
+        if($user->question_id !== '22') {
             $this->updateNewQuestion($events['problem_id'], $events['user_id']);
         }
         //$answer = $events['user_id'];
