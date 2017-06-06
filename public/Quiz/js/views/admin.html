@@ -4,72 +4,90 @@
         <div class="col-md-12">
             <div class="form-all">
                 <h3 style="text-align: center">ตารางผู้ใช้ตอบคำถาม</h3>
-                <table class="table table-bordered table-hover">
-                    <thead>
-                    <tr>
+                <button style="display:inline;float: right;margin-top: 20px"  class="btn btn-primary">โหลดไฟล์ Excl ข้อมูลตารางนี้</button>
 
-                    </tr>
-                    <tr>
-                        <th rowspan="2" style="line-height: 55px">ชื่อ</th>
-                        <th colspan="7">ชุดที่ 1</th>
-                        <th colspan="7">ชุดที่ 2</th>
-                        <th colspan="7">ชุดที่ 3</th>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>2</th>
-                        <th>3</th>
-                        <th>4</th>
-                        <th>5</th>
-                        <th>6</th>
-                        <th>7</th>
-                        <th>1</th>
-                        <th>2</th>
-                        <th>3</th>
-                        <th>4</th>
-                        <th>5</th>
-                        <th>6</th>
-                        <th>7</th>
-                        <th>1</th>
-                        <th>2</th>
-                        <th>3</th>
-                        <th>4</th>
-                        <th>5</th>
-                        <th>6</th>
-                        <th>7</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+                <nav aria-label="Page navigation" style="display: inline">
+                    <ul class="pagination">
+
+                        <li><a  role="button" ng-click="getAllUser(1)">1</a></li>
+                        <li><a  role="button" ng-click="getAllUser(2)">2</a></li>
+                        <li><a  role="button" ng-click="getAllUser(3)">3</a></li>
+                        <li><a  role="button" ng-click="getAllUser(4)">4</a></li>
+                        <li><a  role="button" ng-click="getAllUser(5)">5</a></li>
+
+                    </ul>
+                </nav>
+                <div style="overflow-x: scroll">
+                    <table class="table table-bordered table-hover">
+                        <thead>
                         <tr>
-                            <td>ธนเดช พัดทอง</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
+
                         </tr>
-                    </tbody>
+                        <tr>
+                            <th rowspan="2" style="line-height: 55px">ชื่อ</th>
+                            <th colspan="7">ชุดที่ 1</th>
+                            <th colspan="7">ชุดที่ 2</th>
+                            <th colspan="7">ชุดที่ 3</th>
+                            <th rowspan="2" style="line-height: 55px">ประเภท</th>
+                        </tr>
+                        <tr>
+                            <th>ข้อ 1</th>
+                            <th>ข้อ 2</th>
+                            <th>ข้อ 3</th>
+                            <th>ข้อ 4</th>
+                            <th>ข้อ 5</th>
+                            <th>ข้อ 6</th>
+                            <th>ข้อ 7</th>
+                            <th>ข้อ 1</th>
+                            <th>ข้อ 2</th>
+                            <th>ข้อ 3</th>
+                            <th>ข้อ 4</th>
+                            <th>ข้อ 5</th>
+                            <th>ข้อ 6</th>
+                            <th>ข้อ 7</th>
+                            <th>ข้อ 1</th>
+                            <th>ข้อ 2</th>
+                            <th>ข้อ 3</th>
+                            <th>ข้อ 4</th>
+                            <th>ข้อ 5</th>
+                            <th>ข้อ 6</th>
+                            <th>ข้อ 7</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="user in allUser" ng-show="user.role === 'user'">
+                            <td>{{user.name}}</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>{{user.person_type1}}{{user.person_type2}}{{user.person_type3}}</td>
+                        </tr>
+                        </tbody>
 
 
-                </table>
+                    </table>
+                </div>
 
-                <button style="display: block;margin: auto" class="btn btn-primary">โหลดไฟล์ Excl ข้อมูลตารางนี้</button>
+
+
             </div>
         </div>
     </div>

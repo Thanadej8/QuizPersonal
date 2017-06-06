@@ -1,4 +1,4 @@
-var app = angular.module("QuizPersonal", ["ngRoute","ngStorage","timer"]);
+var app = angular.module("QuizPersonal", ["ngRoute","ngStorage","timer",'ui.bootstrap']);
 app.config(function($routeProvider) {
     $routeProvider
 
@@ -30,5 +30,17 @@ app.config(function($routeProvider) {
 });
 
 
+app.factory('Path_Api', function() {
+    return {
+        //image
 
+        api_login: "/api/user/login",
+        api_post_question : "/api/answer",
+        api_get_question : "/api/question/",
+        api_get_check_all_question : "/api/answer/after/",
+        api_get_all_user_admin : "/api/answer/",
+        api_dowload_excal : "/api/"
+
+    };
+});
 

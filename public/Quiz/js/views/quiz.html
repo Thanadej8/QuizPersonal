@@ -5,39 +5,41 @@
         <div class="col-md-8 col-md-offset-2 col-xs-12">
             <div class="problem">
                 <div class="header-problem">
-                    <h4>ข้อที่ 1 / 21</h4>
+                    <h4>ข้อที่ {{problem.question_id}} / 21</h4>
                     <button class="next-problem btn btn-primary" ng-click="nextProblem()" ng-disabled="isLoadingChoice1 === false && isLoadingChoice2 == false || isNextProblem == true" ng-class="isNextProblem ? 'active': ''">
                         <span ng-show="isNextProblem === true"><i class="fa fa-spinner fa-spin fa-fw"></i></span>
                         <span ng-show="isNextProblem === false">ถัดไป</span>
                     </button>
-                    <p class="time-problem"><small><timer countdown="30" interval="1000">{{countdown}}</timer> วินาที</small></p>
+                    <p class="time-problem"><small><timer  countdown="31" interval="1000">{{countdown}}</timer> วินาที</small></p>
 
 
                 </div>
                 <div class="question-name">
                     <p class="lead">
-                        จ๊าบคูลเลอร์แอปเปิลเก๋ากี้ศิรินทร์ ดาวน์เอ็นเตอร์เทนคูลเลอร์อันเดอร์ ฮอตดอกจิ๊ก โหลนคาแร็คเตอร์เฟรมเคอร์ฟิว ปัจฉิมนิเทศฮาราคีรีกิฟท์วาทกรรม แฟกซ์ยอมรับ ซันตาคลอส สโรชาวอลนัต แพลน แบล็คสแตนดาร์ดควีน ออร์เดอร์สจ๊วตฟลุต นพมาศฮาลาลแดนซ์ตุ๊ด แกงค์ม้งแมกกาซีน ไอซ์โกลด์บลูเบอร์รี่ แจ็กเก็ตฮิบรูฮิปฮอป โปรเจกต์สไปเดอร์
+                        {{problem.question_name}}
                     </p>
                 </div>
 
                 <div class="footer-problem">
                     <div class="row">
 
-                        <div class="col-md-6 col-xs-6">
-                            <button class="btn btn-default" ng-disabled="isNextProblem" ng-class="isLoadingChoice1 ? 'active': ''" ng-click="selectChoice(1)" >
+                        <div class="col-md-12 col-xs-12">
+                            <button class="btn btn-default" ng-disabled="isNextProblem" ng-class="isLoadingChoice1 ? 'btn-success': ''" ng-click="selectChoice(1,problem.choice1_type)" >
                                 <i class="fa fa-check" aria-hidden="true" ng-show="isLoadingChoice1" ></i>
-                                <span >1.ได้เลย</span>
+                                <span >1.{{problem.choice1}}</span>
                             </button>
                         </div>
-                        <div class="col-md-6 col-xs-6">
+                        <div class="col-md-12 col-xs-12">
 
-                            <button class="btn btn-default" ng-disabled="isNextProblem" ng-class="isLoadingChoice2 ? 'active': ''" ng-click="selectChoice(2)">
-                                <span  >2.ไม่ได้</span>
+                            <button class="btn btn-default" ng-disabled="isNextProblem" ng-class="isLoadingChoice2 ? 'btn-success': ''" ng-click="selectChoice(2,problem.choice2_type)">
+                                <span style="display: inline">2.{{problem.choice1}}</span>
                                 <i class="fa fa-check" aria-hidden="true" ng-show="isLoadingChoice2" ></i>
                             </button>
+
                         </div>
 
                     </div>
+
                 </div>
             </div>
         </div>
