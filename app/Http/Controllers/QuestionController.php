@@ -23,7 +23,7 @@ class QuestionController extends Controller
 
     public function getQuestionByID($id)
     {
-        $question = Question::all()->where('id', '=', $id);
+        $question = Question::where('question_id', $id)->first();
         return $question;
     }
 
