@@ -23,7 +23,7 @@ class UserController extends Controller
 
     public function getUserByID($id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         return $user;
     }
 

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Answer;
+use App\User;
+use Illuminate\Http\Request;
 
 class AnswerController extends Controller
 {
@@ -23,9 +24,11 @@ class AnswerController extends Controller
             'set' => $events['set'],
         ];
 
-        $answer = Answer::Create($arrData);
-        $this->updateNewQuestion($events['question_id'], $events['user_id']);
+        $answer = Answer::create($arrData);
+        $this->updateNewQuestion($events['problem_id'], $events['user_id']);
+        //$answer = $events['user_id'];
         return $answer;
+
     }
 
     public function updateNewQuestion($question_id, $user_id)
