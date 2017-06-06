@@ -83,4 +83,9 @@ class AnswerController extends Controller
             User::where('user_id', $user_id)->update(['question_id' => $q_id]);
 
     }
+
+    public function getAnswer()
+    {
+        return Answer::all();
+    }
 }
