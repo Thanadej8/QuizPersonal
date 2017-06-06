@@ -27,7 +27,7 @@ class AnswerController extends Controller
         $answer = Answer::create($arrData);
         $this->updateNewQuestion($events['problem_id'], $events['user_id']);
         //$answer = $events['user_id'];
-        return $answer;
+        return User::where('user_id', $events['user_id'])->first();
 
     }
 
