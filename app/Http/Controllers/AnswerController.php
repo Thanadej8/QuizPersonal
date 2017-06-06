@@ -77,8 +77,11 @@ class AnswerController extends Controller
 
     public function updateNewQuestion($question_id, $user_id)
     {
-        $q_id = intval($question_id) + 1;
-        $q_id = strval($q_id);
-        User::where('user_id', $user_id)->update(['question_id' => $q_id]);
+        if(User::where('user_id', $user_id)->select('question_id') !== '22'){
+            $q_id = intval($question_id) + 1;
+            $q_id = strval($q_id);
+            User::where('user_id', $user_id)->update(['question_id' => $q_id]);
+        }
+        
     }
 }
