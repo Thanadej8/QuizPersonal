@@ -97,4 +97,18 @@ class UserController extends Controller
 
         return 'finish';
     }
+
+    public function ExportExcel(){
+
+        $Data = user::select('name', 'person_type1', 'person_type2', 'person_type3')->get();
+
+        Excel::create('users', function($excel) use($Data) {
+            $excel->sheet('Sheet1', function($sheet) use($Data) {
+                $sheet->fromArray($Data);
+            });
+        })->export('xlsx');
+
+        return 'finish';
+    }
+
 }
