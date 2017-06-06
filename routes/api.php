@@ -24,7 +24,7 @@ Route::post('/user/add', 'UserController@addUser');
 
 Route::post('/answer', 'AnswerController@answerQuestion');
 
-Route::post('/user/login', 'UserController@login');
+Route::post('/user/login', 'UserAuthController@loginUser');
 
 Route::get('/user', 'UserController@getUser');
 
