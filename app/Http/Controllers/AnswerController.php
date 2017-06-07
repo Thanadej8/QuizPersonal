@@ -86,6 +86,16 @@ class AnswerController extends Controller
 
     public function getAnswer()
     {
-        return Answer::all();
+        $answer = Answer::select('user_id')->distinct()->get();
+        $answer2 = $answer;
+        $i = 0;
+        while($answer2->shift() !== null){
+            $user = Answer::where('user_id',$answer)->get();
+            $arrUser[$i] =$user;
+            $answer = $answer2;
+            $i++;
+        }
+        $arrUser[$i] = Answer::where('user_id',$answer)->get();
+        return $arrUser;
     }
 }
