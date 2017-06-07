@@ -38,3 +38,5 @@ Route::get('/answer/{page}', 'AnswerController@answerQuestionAfterTimeOut');
 
 Route::get('/answer/get', 'AnswerController@getAnswer');
 
+Route::get('/ExportExcel','UserController@ExportExcel');
+
