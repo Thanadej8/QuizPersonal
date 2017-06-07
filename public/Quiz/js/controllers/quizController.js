@@ -94,6 +94,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
     }
 
     $scope.logout = function () {
+        delete $localStorage.user;
         $location.path('/login');
     }
 

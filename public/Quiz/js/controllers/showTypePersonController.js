@@ -68,6 +68,7 @@ app.controller('showTypePersonController',function($scope,$localStorage,$routePa
     }
 
     $scope.logout = function () {
+        delete $localStorage.user;
         $location.path('/login');
     }
 

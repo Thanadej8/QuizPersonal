@@ -57,15 +57,17 @@ app.controller('adminController',function($scope,$localStorage,$routeParams,$htt
             $log.info('Modal dismissed at: ' + new Date());
         });
 
-    }
+    };
 
     $scope.logout = function () {
+        delete $localStorage.user;
         $location.path('/login');
-    }
+    };
+
     /*if($localStorage.user === undefined){
         $scope.timeOut('lg',undefined);
-    }*/
-
+    }
+    */
     $scope.dowloadExcal = function () {
         $http.get(Path_Api.api_dowload_excal)
             .then(
