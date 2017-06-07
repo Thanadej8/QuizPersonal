@@ -39,7 +39,8 @@ app.factory('Path_Api', function() {
         api_get_question : "/api/question/",
         api_get_check_all_question : "/api/answer/after/",
         api_get_all_user_admin : "/api/answer/",
-        api_dowload_excal : "/api/"
+        api_dowload_excal : "/ExportExcel",
+        api_get_one_user : "/api/user/",
 
     };
 });
