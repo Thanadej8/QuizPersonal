@@ -20,6 +20,7 @@ app.controller('loginController',function($scope,$localStorage,$routeParams,$htt
                     }else{
                         $localStorage.user = data;
 
+
                         if(data.role === "user"){
                             if(data.question_id === null){
                                 $localStorage.user.question_id = 1;

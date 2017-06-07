@@ -2,7 +2,7 @@
 app.controller('quizController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,problem,$window,Path_Api,$uibModal,$log) {
 
     $scope.user = $localStorage.user;
-    console.log($scope.user);
+    //console.log($scope.user);
     $scope.isLoadingChoice1 = false;
     $scope.isLoadingChoice2 = false;
     $scope.isNextProblem = false;

@@ -63,9 +63,10 @@ app.controller('showTypePersonController',function($scope,$localStorage,$routePa
         });
 
     }
+    /*
     if($localStorage.user === undefined){
         $scope.timeOut('lg',undefined);
-    }
+    }*/
 
     $scope.logout = function () {
         delete $localStorage.user;

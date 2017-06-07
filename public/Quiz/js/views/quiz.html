@@ -24,15 +24,15 @@
                     <div class="row">
 
                         <div class="col-md-12 col-xs-12">
-                            <button class="btn btn-default" ng-disabled="isNextProblem" ng-class="isLoadingChoice1 ? 'btn-success': ''" ng-click="selectChoice(1,problem.choice1_type)" >
+                            <button  class="btn btn-default" ng-disabled="isNextProblem" ng-class="isLoadingChoice1 ? 'btn-success': ''" ng-click="selectChoice(1,problem.choice1_type)" >
+                                <span>1.{{problem.choice2}}</span>
                                 <i class="fa fa-check" aria-hidden="true" ng-show="isLoadingChoice1" ></i>
-                                <span >1.{{problem.choice1}}</span>
                             </button>
                         </div>
                         <div class="col-md-12 col-xs-12">
 
                             <button class="btn btn-default" ng-disabled="isNextProblem" ng-class="isLoadingChoice2 ? 'btn-success': ''" ng-click="selectChoice(2,problem.choice2_type)">
-                                <span style="display: inline">2.{{problem.choice1}}</span>
+                                <span>2.{{problem.choice1}}</span>
                                 <i class="fa fa-check" aria-hidden="true" ng-show="isLoadingChoice2" ></i>
                             </button>
 
