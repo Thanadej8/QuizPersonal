@@ -43,7 +43,7 @@ return [
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
             'strict' => true,
-            'engine' => null,p
+            'engine' => null,
         ],
         'pgsql' => [
             'driver' => 'pgsql',
