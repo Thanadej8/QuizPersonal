@@ -1,13 +1,35 @@
 
-app.controller('showTypePersonController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,$uibModal,$log) {
+app.controller('showTypePersonController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,$uibModal,$log,getOneUser) {
     $scope.user = $localStorage.user;
     $localStorage.user_id = $routeParams.user_id;
-    console.log($scope.user);
 
+    $scope.viewAnalyst = false;
+    $scope.viewDiplomat = false;
+    $scope.viewSentinel = false;
+    $scope.viewExploer = false;
+    $scope.image = "";
     $scope.go = function (path) {
         $location.path(path);
     }
+    getUser($localStorage.user_id);
+    function getUser(user_id) {
 
+        getOneUser.getData(user_id).then(
+            function(response){
+                var data = response.data;
+                console.log(data);
+                $localStorage.user = data;
+                $scope.user = data;
+                analysisData($scope.user.person_type1,$scope.user.person_type2,$scope.user.person_type3)
+            },
+            function(response){
+                // failure call back
+            });
+
+    }
+    if($localStorage.user === undefined){
+        $scope.timeOut('lg',undefined);
+    }
     $scope.timeOut = function (size, parentSelector) {
         var parentElem = parentSelector ?
             angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
@@ -47,8 +69,18 @@ app.controller('showTypePersonController',function($scope,$localStorage,$routePa
     $scope.logout = function () {
         $location.path('/login');
     }
-    if($localStorage.user === undefined){
-        $scope.timeOut('lg',undefined);
+    
+    function analysisData(type1,type2,type3) {
+        var type = type1+type2+type3;
+        if(type === "NTJ" || type === "NTP"){
+            $scope.viewAnalyst = true;
+        }else if(type === "NFP" || type === "NFJ"){
+            $scope.viewDiplomat = true;
+        }else if(type === "STJ" || type === "SFJ"){
+            $scope.viewSentinel = true;
+        }else if(type === "STP" || type === "SFP"){
+            $scope.viewExploer = true;
+        }
     }
 
 });

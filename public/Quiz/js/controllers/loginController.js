@@ -1,6 +1,6 @@
 
 app.controller('loginController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,Path_Api) {
-    delete $localStorage.user;
+
     $scope.massage;
 
     $scope.login = function () {

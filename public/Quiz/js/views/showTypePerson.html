@@ -6,6 +6,20 @@
             <div class="form-all">
                 <img style="width: 250px;height: 200px; margin: auto;display: block;border: 1px solid #FFFFFF" src="">
                 <button style="margin: auto;display: block;margin-top: 15px;" class="btn btn-primary">โหลดรูปภาพ</button>
+                <h2 style="text-align: center;">คุณเป็นบุคคลประเภท</h2>
+                <h3 style="color: red;text-align: center;">{{user.person_type1}}{{user.person_type2}}{{user.person_type3}}</h3>
+                <div ng-show="viewAnalyst" style="margin: 10px 0;">
+                    <p style="text-align: center">คุณเป็นคนประเภทนักวิเคราะห์</p>
+                </div>
+                <div ng-show="viewDiplomat" style="margin: 10px 0;">
+
+                </div>
+                <div ng-show="viewSentinel" style="margin: 10px 0;">
+
+                </div>
+                <div ng-show="viewExploer" style="margin: 10px 0;">
+
+                </div>
             </div>
          </div>
      </div>

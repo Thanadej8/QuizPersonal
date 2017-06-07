@@ -1,8 +1,8 @@
 
-app.controller('adminController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,$uibModal,$log,allUser) {
+app.controller('adminController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,$uibModal,$log,allUser,Path_Api) {
 
     $scope.user = $localStorage.user;
-
+    console.log($scope.user);
 
     $scope.go = function (path) {
         $location.path(path);
@@ -64,6 +64,24 @@ app.controller('adminController',function($scope,$localStorage,$routeParams,$htt
     }
     if($localStorage.user === undefined){
         $scope.timeOut('lg',undefined);
+    }
+
+    $scope.dowloadExcal = function () {
+        $http.get(Path_Api.api_dowload_excal)
+            .then(
+                function(response){
+
+                    // success
+                    var data = response.data;
+                    console.log(data);
+
+
+                },
+                function(response){
+                    // failure callback
+
+                }
+            );
     }
 
 });
