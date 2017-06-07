@@ -97,14 +97,14 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
         $location.path('/login');
     }
 
-
-    if($localStorage.user !== undefined){
+    getProblem($localStorage.user.question_id);
+    /*if($localStorage.user !== undefined){
         getProblem($localStorage.user.question_id);
     }else{
         console.log("hello");
         $scope.stopTimer();
         $scope.timeOut('lg',undefined);
-    }
+    }*/
 
     function getProblem(id) {
 

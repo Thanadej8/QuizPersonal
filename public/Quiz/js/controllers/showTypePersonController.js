@@ -17,9 +17,9 @@ app.controller('showTypePersonController',function($scope,$localStorage,$routePa
         getOneUser.getData(user_id).then(
             function(response){
                 var data = response.data;
-                console.log(data);
-                $localStorage.user = data;
-                $scope.user = data;
+                console.log(data[0]);
+                $localStorage.user = data[0];
+                $scope.user = $localStorage.user;
                 analysisData($scope.user.person_type1,$scope.user.person_type2,$scope.user.person_type3)
             },
             function(response){
@@ -27,9 +27,7 @@ app.controller('showTypePersonController',function($scope,$localStorage,$routePa
             });
 
     }
-    if($localStorage.user === undefined){
-        $scope.timeOut('lg',undefined);
-    }
+
     $scope.timeOut = function (size, parentSelector) {
         var parentElem = parentSelector ?
             angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
@@ -65,13 +63,18 @@ app.controller('showTypePersonController',function($scope,$localStorage,$routePa
         });
 
     }
+    if($localStorage.user === undefined){
+        $scope.timeOut('lg',undefined);
+    }
 
     $scope.logout = function () {
         $location.path('/login');
     }
+
     
     function analysisData(type1,type2,type3) {
         var type = type1+type2+type3;
+        console.log(type);
         if(type === "NTJ" || type === "NTP"){
             $scope.viewAnalyst = true;
         }else if(type === "NFP" || type === "NFJ"){

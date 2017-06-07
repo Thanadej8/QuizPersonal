@@ -62,9 +62,9 @@ app.controller('adminController',function($scope,$localStorage,$routeParams,$htt
     $scope.logout = function () {
         $location.path('/login');
     }
-    if($localStorage.user === undefined){
+    /*if($localStorage.user === undefined){
         $scope.timeOut('lg',undefined);
-    }
+    }*/
 
     $scope.dowloadExcal = function () {
         $http.get(Path_Api.api_dowload_excal)
