@@ -100,7 +100,7 @@ class AnswerController extends Controller
             ];
             $arrUser[$i]['name'] = User::where('user_id', $users_id[$i])->pluck('name')->toArray();
             for($j = 0; $j < count($user); ++$j){
-                $arrUser[$i][$j] = [
+                $arrUser[$i]['question_answer'] = [
                     'question_id' => $user[$j]['question_id'],
                     'answer_type' => $user[$j]['answer_type'],
                 ];
