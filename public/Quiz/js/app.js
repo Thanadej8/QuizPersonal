@@ -33,10 +33,10 @@ app.config(function($routeProvider) {
 app.factory('Path_Api', function() {
     return {
         //image
-        path_image_analyst_1 : "/image/CSD-personality-JUNE6-01.jpg",
-        path_image_diplomat_1 : "/Quiz/image/CSD-personality-JUNE6-03.jpg",
-        path_image_sentinel_1 : "/Quiz/image/CSD-personality-JUNE6-05.jpg",
-        path_image_explorer_1 : "/image/CSD-personality-JUNE6-07.jpg",
+        path_image_analyst_1 : "image/NFP&NFJ.jpg",
+        path_image_diplomat_1 : "image/NTJ&NTP.jpg",
+        path_image_sentinel_1 : "image/STP&SFJ.jpg",
+        path_image_explorer_1 : "image/STP&SFP.jpg",
 
         api_login: "/api/user/login",
         api_post_question : "/api/answer",
