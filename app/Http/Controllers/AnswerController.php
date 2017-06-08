@@ -99,7 +99,7 @@ class AnswerController extends Controller
                 'user_id' => $users_id[$i],
             ];
             for($j = 0; $j < count($user); ++$j){
-                $arrUser['answer_question'] = [
+                $arrUser[$i]['answer_question'] = [
                     'question_id' => $user[$j]['question_id'],
                     'answer_type' => $user[$j]['answer_type'],
                 ];
