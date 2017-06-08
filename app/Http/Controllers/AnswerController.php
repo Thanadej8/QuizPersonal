@@ -86,7 +86,7 @@ class AnswerController extends Controller
 
     public function getAnswer()
     {
-        $users_id = User::select('user_id')->pluck('user_id')->toArray();
+        $users_id = User::where('role', 'user')->select('user_id')->pluck('user_id')->toArray();
         $user_answered_id = Answer::select('user_id')->distinct()->pluck('user_id')->toArray();
 
         //return $user_answered_id->user_id;
