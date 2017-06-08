@@ -30,11 +30,11 @@ Route::get('/user', 'UserController@getUser');
 
 Route::get('/user/{id}', 'UserController@getUserByID');
 
+Route::get('/question', 'QuestionController@getQuestio');
+
 Route::get('/question/{id}', 'QuestionController@getQuestionByID');
 
 Route::get('/answer/after/{id}', 'AnswerController@answerQuestionAfterTimeOut');
-
-Route::get('/answer/{page}', 'AnswerController@answerQuestionAfterTimeOut');
 
 Route::get('/answer/get', 'AnswerController@getAnswer');
 

@@ -21,6 +21,12 @@ class QuestionController extends Controller
         return response()->json(['msg' => 'post complete'],Question::last());
     }
 
+    public function getQuestion()
+    {
+        $question = Question::all();
+        return $question;
+    }
+
     public function getQuestionByID($id)
     {
         $question = Question::where('question_id', $id)->first();

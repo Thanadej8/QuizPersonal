@@ -86,16 +86,25 @@ class AnswerController extends Controller
 
     public function getAnswer()
     {
-        $answer = Answer::select('user_id')->distinct()->get();
-        $answer2 = $answer;
+        $users_id = User::select('user_id')->pluck('user_id')->toArray();
+        $user_answered_id = Answer::select('user_id')->distinct()->pluck('user_id')->toArray();
+
+        //return $user_answered_id->user_id;
         $i = 0;
-        while($answer2->shift() !== null){
-            $user = Answer::where('user_id',$answer)->get();
-            $arrUser[$i] =$user;
-            $answer = $answer2;
-            $i++;
+        $arrUser = [];
+        $json = ([]);
+        for($i = 0; $i < count($users_id); ++$i){
+            $user = Answer::where('user_id', $users_id[$i])->where('answer_type', '!=', 'no')->select('question_id', 'answer_type')->get()->toArray();
+            $arrUser[$i] = [
+                'user_id' => $users_id[$i],
+            ];
+            for($j = 0; $j < count($user); ++$j){
+                $arrUser['answer_question'] = [
+                    'question_id' => $user[$j]['question_id'],
+                    'answer_type' => $user[$j]['answer_type'],
+                ];
+            }
         }
-        $arrUser[$i] = Answer::where('user_id',$answer)->get();
         return $arrUser;
     }
 }
