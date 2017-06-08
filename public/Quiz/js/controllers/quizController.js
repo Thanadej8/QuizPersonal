@@ -1,27 +1,50 @@
 
-app.controller('quizController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,problem,$window,Path_Api,$uibModal,$log) {
+app.controller('quizController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,problem,$window,Path_Api,$uibModal,$log,getOneUser) {
+    $localStorage.user_id = $routeParams.user_id;
 
-    $scope.user = $localStorage.user;
-    //console.log($scope.user);
     $scope.isLoadingChoice1 = false;
     $scope.isLoadingChoice2 = false;
     $scope.isNextProblem = false;
 
-
+    var seconds = 0;
     $scope.answer = "no";
     $scope.problem;
     $scope.answer;
     $scope.timeoutProblem;
     $scope.timerRunning = true;
+
     $scope.go = function (path) {
         $location.path(path);
     }
-    var seconds = 0;
 
-    $window.onpopstate = function (e) {
-        delete $localStorage.user;
-        console.log($localStorage.user);
+
+
+    $window.onpopstate = function () {
+
     };
+
+
+    function getUser(user_id) {
+
+        getOneUser.getData(user_id).then(
+            function(response){
+                var data = response.data;
+                console.log(data);
+                $scope.user = data[0];
+                if($scope.user.question_id === null){
+                    getProblem(1);
+                }else{
+                    getProblem($scope.user.question_id);
+                }
+
+
+            },
+            function(response){
+                // failure call back
+            });
+
+    }
+
     //timer
     $scope.startTimer = function () {
         $scope.$broadcast('timer-start');
@@ -39,7 +62,6 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
     $scope.$on('timer-stopped', function (event, data){
         seconds = data.seconds;
         if(data.seconds === 0 && $localStorage.user !== undefined){
-
             $scope.nextProblem();
         }
 
@@ -98,17 +120,11 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
         $location.path('/login');
     }
 
-    getProblem($localStorage.user.question_id);
-    /*if($localStorage.user !== undefined){
-        getProblem($localStorage.user.question_id);
-    }else{
-        console.log("hello");
-        $scope.stopTimer();
-        $scope.timeOut('lg',undefined);
-    }*/
+
+
 
     function getProblem(id) {
-
+    console.log(id + "start getProblem")
         problem.getData(id).then(
             function(response){
                 var data = response.data;
@@ -223,7 +239,11 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
 
 
 
-
+    if($localStorage.user_id !== undefined){
+        getUser($localStorage.user_id);
+    }else{
+        $scope.timeOut('sm',undefined);
+    }
 
 
 

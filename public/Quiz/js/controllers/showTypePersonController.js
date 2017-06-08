@@ -1,17 +1,18 @@
 
-app.controller('showTypePersonController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,$uibModal,$log,getOneUser) {
-    $scope.user = $localStorage.user;
-    $localStorage.user_id = $routeParams.user_id;
+app.controller('showTypePersonController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,$uibModal,$log,getOneUser,Path_Api) {
 
+    $localStorage.user_id = $routeParams.user_id;
     $scope.viewAnalyst = false;
     $scope.viewDiplomat = false;
     $scope.viewSentinel = false;
     $scope.viewExploer = false;
     $scope.image = "";
+
     $scope.go = function (path) {
         $location.path(path);
     }
-    getUser($localStorage.user_id);
+
+
     function getUser(user_id) {
 
         getOneUser.getData(user_id).then(
@@ -63,10 +64,7 @@ app.controller('showTypePersonController',function($scope,$localStorage,$routePa
         });
 
     }
-    /*
-    if($localStorage.user === undefined){
-        $scope.timeOut('lg',undefined);
-    }*/
+
 
     $scope.logout = function () {
         delete $localStorage.user;
@@ -79,13 +77,23 @@ app.controller('showTypePersonController',function($scope,$localStorage,$routePa
         console.log(type);
         if(type === "NTJ" || type === "NTP"){
             $scope.viewAnalyst = true;
+            $scope.image = Path_Api.path_image_analyst_1;
         }else if(type === "NFP" || type === "NFJ"){
             $scope.viewDiplomat = true;
+            $scope.image = Path_Api.path_image_diplomat_1;
         }else if(type === "STJ" || type === "SFJ"){
             $scope.viewSentinel = true;
+            $scope.image = Path_Api.path_image_sentinel_1;
         }else if(type === "STP" || type === "SFP"){
             $scope.viewExploer = true;
+            $scope.image = Path_Api.path_image_explorer_1;
         }
+    }
+
+    if($localStorage.user_id !== null){
+        getUser($localStorage.user_id);
+    }else{
+        $scope.timeOut('sm',undefined);
     }
 
 });

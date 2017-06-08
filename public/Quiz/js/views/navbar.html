@@ -2,13 +2,13 @@
 <nav class="navbar navbar-default" >
     <div class="container-fluid">
 
-        <div class="navbar-header">
+        <div class="navbar-header" style="display: inline-block">
             <a class="navbar-brand">
                 <img src="central_logo.jpg" alt="Central Logo">
             </a>
         </div>
-        <button style="float: right;margin-top: 7px" class="btn btn-default" ng-click="logout()" ng-show="user.role === 'admin'">ออกจากระบบ {{user.name}}</button>
-        <p ng-show="user.role === 'user'" style="text-align: right;margin-top: 15px">{{user.name}}</p>
+        <button style="float: right;margin-top: 7px;display: inline" class="btn btn-default" ng-click="logout()" ng-show="user.role === 'admin'">ออกจากระบบ {{user.name}}</button>
+        <p ng-show="user.role === 'user'" style="float:right;margin-top: 12px;display: inline">{{user.name}}</p>
         <!--/.nav-collapse -->
     </div>
     <!--/.container-fluid -->

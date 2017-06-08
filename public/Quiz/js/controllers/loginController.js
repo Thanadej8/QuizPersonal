@@ -1,6 +1,6 @@
 
 app.controller('loginController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,Path_Api) {
-
+    $localStorage.user;
     $scope.massage;
 
     $scope.login = function () {
@@ -24,14 +24,14 @@ app.controller('loginController',function($scope,$localStorage,$routeParams,$htt
                         if(data.role === "user"){
                             if(data.question_id === null){
                                 $localStorage.user.question_id = 1;
-                                $location.path('/quiz')
+                                $location.path('/quiz/'+$localStorage.user.user_id);
                             }else if(data.question_id === "22"){
                                 $location.path('/showtypeperson/'+$localStorage.user.user_id);
                             }else{
-                                $location.path('/quiz');
+                                $location.path('/quiz/'+$localStorage.user.user_id);
                             }
                         }else if(data.role === "admin"){
-                            $location.path('/admin');
+                            $location.path('/admin/'+$localStorage.user.user_id);
                         }
                     }
 

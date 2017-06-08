@@ -1,16 +1,31 @@
 
-app.controller('adminController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,$uibModal,$log,allUser,Path_Api) {
+app.controller('adminController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,$uibModal,$log,allUser,Path_Api,getOneUser) {
 
-    $scope.user = $localStorage.user;
-    console.log($scope.user);
+    $localStorage.user_id = $routeParams.user_id;
 
     $scope.go = function (path) {
         $location.path(path);
     }
+    
+    function getUser(user_id) {
 
-    $scope.getAllUser = function(page) {
+        getOneUser.getData(user_id).then(
+            function(response){
+                var data = response.data;
+                console.log(data[0]);
+                $localStorage.user = data[0];
+                $scope.user = $localStorage.user;
 
-        allUser.getData(page).then(
+            },
+            function(response){
+                // failure call back
+            });
+
+    }
+
+    $scope.getAllUser = function() {
+
+        allUser.getData().then(
             function(response){
                 var data = response.data;
                 console.log(data);
@@ -22,7 +37,7 @@ app.controller('adminController',function($scope,$localStorage,$routeParams,$htt
             });
 
     };
-    $scope.getAllUser(1);
+
     $scope.timeOut = function (size, parentSelector) {
         var parentElem = parentSelector ?
             angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
@@ -64,10 +79,7 @@ app.controller('adminController',function($scope,$localStorage,$routeParams,$htt
         $location.path('/login');
     };
 
-    /*if($localStorage.user === undefined){
-        $scope.timeOut('lg',undefined);
-    }
-    */
+
     $scope.dowloadExcal = function () {
         $http.get(Path_Api.api_dowload_excal)
             .then(
@@ -86,5 +98,11 @@ app.controller('adminController',function($scope,$localStorage,$routeParams,$htt
             );
     }
 
+    if($localStorage.user_id !== undefined){
+        getUser($localStorage.user_id);
+        $scope.getAllUser();
+    }else{
+        $scope.timeOut('sm',undefined);
+    }
 });
 

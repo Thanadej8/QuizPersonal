@@ -4,19 +4,12 @@
         <div class="col-md-12">
             <div class="form-all">
                 <h3 style="text-align: center">ตารางผู้ใช้ตอบคำถาม</h3>
-                <a style="display:inline;float: right;margin-top: 20px"  class="btn btn-primary" href="/api/ExportExcel">โหลดไฟล์ Excl ข้อมูลตารางนี้</a>
 
-                <nav aria-label="Page navigation" style="display: inline">
-                    <ul class="pagination">
+                    <a role="button" class="btn btn-success"  style="margin: 15px auto;display: block"  href="/api/ExportExcel">โหลดไฟล์ Excl ข้อมูลตารางนี้</a>
 
-                        <li><a  role="button" ng-click="getAllUser(1)">1</a></li>
-                        <li><a  role="button" ng-click="getAllUser(2)">2</a></li>
-                        <li><a  role="button" ng-click="getAllUser(3)">3</a></li>
-                        <li><a  role="button" ng-click="getAllUser(4)">4</a></li>
-                        <li><a  role="button" ng-click="getAllUser(5)">5</a></li>
 
-                    </ul>
-                </nav>
+
+
                 <div style="overflow-x: scroll">
                     <table class="table table-bordered table-hover">
                         <thead>
@@ -28,7 +21,7 @@
                             <th colspan="7">ชุดที่ 1</th>
                             <th colspan="7">ชุดที่ 2</th>
                             <th colspan="7">ชุดที่ 3</th>
-                            <th rowspan="2" style="line-height: 55px">ประเภท</th>
+
                         </tr>
                         <tr>
                             <th>ข้อ 1</th>
@@ -55,30 +48,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="user in allUser" ng-show="user.role === 'user'">
-                            <td>{{user.name}}</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>{{user.person_type1}}{{user.person_type2}}{{user.person_type3}}</td>
+                        <tr ng-repeat="user in allUser" >
+                            <td>{{user.name[0]}}</td>
+                            <td ng-repeat="problem_number in user.question_answer">{{problem_number.answer_type}}</td>
                         </tr>
                         </tbody>
 

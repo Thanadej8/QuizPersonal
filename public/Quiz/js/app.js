@@ -8,7 +8,7 @@ app.config(function($routeProvider) {
         })
 
 
-        .when("/quiz", {
+        .when("/quiz/:user_id", {
             templateUrl: "js/views/quiz.html",
             controller: "quizController"
         })
@@ -16,7 +16,7 @@ app.config(function($routeProvider) {
             templateUrl: "js/views/showTypePerson.html",
             controller: "showTypePersonController"
         })
-        .when("/admin", {
+        .when("/admin/:user_id", {
             templateUrl: "js/views/admin.html",
             controller: "adminController"
         })
@@ -33,14 +33,19 @@ app.config(function($routeProvider) {
 app.factory('Path_Api', function() {
     return {
         //image
+        path_image_analyst_1 : "/image/CSD-personality-JUNE6-01.jpg",
+        path_image_diplomat_1 : "/Quiz/image/CSD-personality-JUNE6-03.jpg",
+        path_image_sentinel_1 : "/Quiz/image/CSD-personality-JUNE6-05.jpg",
+        path_image_explorer_1 : "/image/CSD-personality-JUNE6-07.jpg",
 
         api_login: "/api/user/login",
         api_post_question : "/api/answer",
         api_get_question : "/api/question/",
         api_get_check_all_question : "/api/answer/after/",
-        api_get_all_user_admin : "/api/answer/",
+        api_get_all_user_admin : "/api/answer/get",
         api_dowload_excal : "/api/ExportExcel",
         api_get_one_user : "/api/user/",
+
 
     };
 });
