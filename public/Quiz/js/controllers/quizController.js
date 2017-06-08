@@ -69,7 +69,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
 
     //Before Close Browser
     $scope.onExit = function(e) {
-        console.log(e);
+
         $scope.nextProblem();
         return ('bye bye');
     };
