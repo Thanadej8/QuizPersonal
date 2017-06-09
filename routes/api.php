@@ -30,7 +30,7 @@ Route::get('/user', 'UserController@getUser');
 
 Route::get('/user/{id}', 'UserController@getUserByID');
 
-Route::get('/question', 'QuestionController@getQuestio');
+Route::get('/question', 'QuestionController@getQuestion');
 
 Route::get('/question/{id}', 'QuestionController@getQuestionByID');
 

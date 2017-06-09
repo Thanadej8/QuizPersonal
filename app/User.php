@@ -10,7 +10,7 @@ class User extends Authenticatable
     public $timestamps = true;
     protected $table = 'users';
     protected $fillable = [
-        'name', 'username', 'role',
+        'name', 'username', 'role', 'job',
     ];
     protected $hidden = [
         'created_at', 'updated_at',
