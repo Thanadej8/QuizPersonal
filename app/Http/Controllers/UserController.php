@@ -78,7 +78,7 @@ class UserController extends Controller
 
     public function readExcel()
     {
-        $path =  "D:\\xampp\\htdocs\\QuizPersonal\\public\\Data2.xlsx";
+        $path =  "D:\\xampp\\htdocs\\QuizPersonal\\public\\User.xlsx";
         $data = Excel::load($path, function ($reader){
         })->get();
 
@@ -86,7 +86,7 @@ class UserController extends Controller
 
         if(!empty($data) && $data->count()){
             foreach ($data as $d) {
-                $DataUser[] = ['username' => $d->username, 'name' => $d->name];
+                $DataUser[] = ['username' => $d->username, 'name' => $d->name ,'job' => $d ->job];
                 //Log::info('###### '.$d->name);
             }
         }
