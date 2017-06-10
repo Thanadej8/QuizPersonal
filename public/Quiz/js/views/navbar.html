@@ -7,8 +7,13 @@
                 <img src="central_logo.jpg" alt="Central Logo">
             </a>
         </div>
-        <button style="float: right;margin-top: 7px;display: inline" class="btn btn-default" ng-click="logout()" ng-show="user.role === 'admin'">ออกจากระบบ {{user.name}}</button>
-        <p ng-show="user.role === 'user'" style="float:right;margin-top: 12px;display: inline">{{user.name}}</p>
+        <button style="float: right;margin-top: 7px;display: inline" class="btn btn-default" ng-click="logout()" ng-show="user.role === 'admin'">ออกจากระบบ {{user.name}} <i class="fa fa-user-circle-o" aria-hidden="true" style="display: inline;margin-left: 3px"></i></button>
+        <div style="float: right;padding-top: 12px" ng-show="user.role === 'user'">
+
+            <p  style="display: inline;">{{user.name}}</p>
+
+        </div>
+
         <!--/.nav-collapse -->
     </div>
     <!--/.container-fluid -->

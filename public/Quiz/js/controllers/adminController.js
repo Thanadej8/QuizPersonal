@@ -1,27 +1,13 @@
 
-app.controller('adminController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,$uibModal,$log,allUser,Path_Api,getOneUser) {
+app.controller('adminController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,$uibModal,$log,allUser,Path_Api,getOneUser,$sessionStorage) {
 
-    $localStorage.user_id = $routeParams.user_id;
+    $scope.user = $sessionStorage.user;
 
     $scope.go = function (path) {
         $location.path(path);
     }
     
-    function getUser(user_id) {
 
-        getOneUser.getData(user_id).then(
-            function(response){
-                var data = response.data;
-                console.log(data[0]);
-                $localStorage.user = data[0];
-                $scope.user = $localStorage.user;
-
-            },
-            function(response){
-                // failure call back
-            });
-
-    }
 
     $scope.getAllUser = function() {
 
@@ -75,7 +61,7 @@ app.controller('adminController',function($scope,$localStorage,$routeParams,$htt
     };
 
     $scope.logout = function () {
-        delete $localStorage.user;
+        delete $sessionStorage.user;
         $location.path('/login');
     };
 
@@ -98,9 +84,10 @@ app.controller('adminController',function($scope,$localStorage,$routeParams,$htt
             );
     }
 
-    if($localStorage.user_id !== undefined){
-        getUser($localStorage.user_id);
+
+    if($sessionStorage.user !== undefined){
         $scope.getAllUser();
+
     }else{
         $scope.timeOut('sm',undefined);
     }

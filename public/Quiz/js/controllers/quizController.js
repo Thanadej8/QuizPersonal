@@ -1,6 +1,6 @@
 
-app.controller('quizController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,problem,$window,Path_Api,$uibModal,$log,getOneUser) {
-    $localStorage.user_id = $routeParams.user_id;
+app.controller('quizController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,problem,$window,Path_Api,$uibModal,$log,getOneUser,$sessionStorage) {
+    $scope.user = $sessionStorage.user;
 
     $scope.isLoadingChoice1 = false;
     $scope.isLoadingChoice2 = false;
@@ -19,31 +19,13 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
 
 
 
+
     $window.onpopstate = function () {
 
     };
 
 
-    function getUser(user_id) {
 
-        getOneUser.getData(user_id).then(
-            function(response){
-                var data = response.data;
-                console.log(data);
-                $scope.user = data[0];
-                if($scope.user.question_id === null){
-                    getProblem(1);
-                }else{
-                    getProblem($scope.user.question_id);
-                }
-
-
-            },
-            function(response){
-                // failure call back
-            });
-
-    }
 
     //timer
     $scope.startTimer = function () {
@@ -61,7 +43,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
 
     $scope.$on('timer-stopped', function (event, data){
         seconds = data.seconds;
-        if(data.seconds === 0 && $localStorage.user !== undefined){
+        if(data.seconds === 0 && $sessionStorage.user !== undefined){
             $scope.nextProblem();
         }
 
@@ -116,7 +98,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
     }
 
     $scope.logout = function () {
-        delete $localStorage.user;
+        delete $sessionStorage.user;
         $location.path('/login');
     }
 
@@ -124,7 +106,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
 
 
     function getProblem(id) {
-    console.log(id + "start getProblem")
+
         problem.getData(id).then(
             function(response){
                 var data = response.data;
@@ -171,7 +153,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
 
 
         var dataSelectChoice = {
-            user_id: $localStorage.user.user_id,
+            user_id: $sessionStorage.user.user_id,
             problem_id : $scope.problem.question_id,
             answer : $scope.answer,
             set : $scope.problem.set,
@@ -207,7 +189,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
     };
     
     function checkAnswerQuestion() {
-        var path = Path_Api.api_get_check_all_question + $localStorage.user.user_id;
+        var path = Path_Api.api_get_check_all_question + $sessionStorage.user.user_id;
         $http.get(path)
             .then(
                 function(response){
@@ -217,7 +199,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
 
                     console.log($scope.timeoutProblem);
                     if($scope.timeoutProblem.length === 0){
-                        $location.path('/showtypeperson/'+$localStorage.user.user_id);
+                        $location.path('/showtypeperson');
                     }else{
                         $scope.isNextProblem = false;
                         $scope.selectChoice("Reset",null);
@@ -237,13 +219,13 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
         getProblem(id);
     };
 
-
-
-    if($localStorage.user_id !== undefined){
-        getUser($localStorage.user_id);
+    if($sessionStorage.user !== undefined){
+        getProblem($sessionStorage.user.question_id);
     }else{
-        $scope.timeOut('sm',undefined);
+        $scope.timeOut('sm',undefined)
     }
+
+
 
 
 

@@ -1,6 +1,6 @@
 
-app.controller('loginController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,Path_Api) {
-    $localStorage.user;
+app.controller('loginController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,Path_Api,$sessionStorage) {
+    $sessionStorage.user;
     $scope.massage;
 
     $scope.login = function () {
@@ -18,20 +18,20 @@ app.controller('loginController',function($scope,$localStorage,$routeParams,$htt
                     if(data.msg === "username is incorrect"){
                         $scope.massage = "กรอกข้อมูลผิดพลาด ไม่สามารถเข้าสู่ระบบได้";
                     }else{
-                        $localStorage.user = data;
+                        $sessionStorage.user = data;
 
 
                         if(data.role === "user"){
                             if(data.question_id === null){
-                                $localStorage.user.question_id = 1;
-                                $location.path('/quiz/'+$localStorage.user.user_id);
+                                $sessionStorage.user.question_id = "1";
+                                $location.path('/quiz');
                             }else if(data.question_id === "22"){
-                                $location.path('/showtypeperson/'+$localStorage.user.user_id);
+                                $location.path('/showtypeperson');
                             }else{
-                                $location.path('/quiz/'+$localStorage.user.user_id);
+                                $location.path('/quiz');
                             }
                         }else if(data.role === "admin"){
-                            $location.path('/admin/'+$localStorage.user.user_id);
+                            $location.path('/admin');
                         }
                     }
 
