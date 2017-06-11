@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('Quiz');
 });
 
 Route::get('/getExcel','UserController@readExcel');
