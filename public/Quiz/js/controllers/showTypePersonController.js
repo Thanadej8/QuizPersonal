@@ -80,60 +80,45 @@ app.controller('showTypePersonController',function($scope,$localStorage,$routePa
         if(type === "NTJ" || type === "NTP"){
             $scope.viewAnalyst = true;
 
-
-            $scope.image = Path_Api.path_test;
-            $scope.url_image =Path_Api.path_test_url;
             if($scope.user.job === "Front"){
-
-                $scope.url_image =Path_Api.path_test_url;
-                //$scope.image = Path_Api.path_image_analyst_Front;
+                $scope.url_image = Path_Api.path_image_analysy_Front_url;
+                $scope.image = Path_Api.path_image_analyst_Front;
             }else if($scope.user.job === "Back"){
-                $scope.image = Path_Api.path_test;
-                $scope.url_image =Path_Api.path_test_url;
-                //$scope.image = Path_Api.path_image_analyst_Back;
+                $scope.url_image = Path_Api.path_image_analysy_Back_url;
+                $scope.image = Path_Api.path_image_analyst_Back;
             }
 
         }else if(type === "NFP" || type === "NFJ"){
             $scope.viewDiplomat = true;
-            $scope.image = Path_Api.path_test;
-            $scope.url_image =Path_Api.path_test_url;
+
             if($scope.user.job === "Front"){
-                $scope.image = Path_Api.path_test;
-                $scope.url_image =Path_Api.path_test_url;
-                //$scope.image = Path_Api.path_image_diplomat_Front;
+                $scope.url_image = Path_Api.path_image_diplomat_Front_url;
+                $scope.image = Path_Api.path_image_diplomat_Front;
             }else if($scope.user.job === "Back"){
-                $scope.image = Path_Api.path_test;
-                $scope.url_image =Path_Api.path_test_url;
-                //$scope.image = Path_Api.path_image_diplomat_Back;
+                $scope.url_image = Path_Api.path_image_diplomat_Back_url;
+                $scope.image = Path_Api.path_image_diplomat_Back;
             }
 
         }else if(type === "STJ" || type === "SFJ"){
             $scope.viewSentinel = true;
-            $scope.image = Path_Api.path_test;
-            $scope.url_image =Path_Api.path_test_url;
+
             if($scope.user.job === "Front"){
-                $scope.image = Path_Api.path_test;
-                $scope.url_image =Path_Api.path_test_url;
-                //$scope.image = Path_Api.path_image_sentinel_Front;
+                $scope.url_image = Path_Api.path_image_sentinel_Front_url;
+                $scope.image = Path_Api.path_image_sentinel_Front;
             }else if($scope.user.job === "Back"){
-                $scope.image = Path_Api.path_test;
-                $scope.url_image =Path_Api.path_test_url;
-                //$scope.image = Path_Api.path_image_sentinel_Back;
+                $scope.url_image = Path_Api.path_image_sentinel_Back_url;
+                $scope.image = Path_Api.path_image_sentinel_Back;
             }
 
         }else if(type === "STP" || type === "SFP"){
             $scope.viewExploer = true;
-            $scope.image = Path_Api.path_test;
-            $scope.url_image =Path_Api.path_test_url;
-            if($scope.user.job === "Front"){
 
-                $scope.image = Path_Api.path_test;
-                $scope.url_image =Path_Api.path_test_url;
-                //$scope.image = Path_Api.path_image_explorer_Front;
+            if($scope.user.job === "Front"){
+                $scope.url_image = Path_Api.path_image_explorer_Front_url;
+                $scope.image = Path_Api.path_image_explorer_Front;
             }else if($scope.user.job === "Back"){
-                $scope.image = Path_Api.path_test;
-                $scope.url_image =Path_Api.path_test_url;
-                //$scope.image = Path_Api.path_image_explorer_Back;
+                $scope.url_image = Path_Api.path_image_explorer_Back_url;
+                $scope.image = Path_Api.path_image_explorer_Back;
             }
 
         }
@@ -145,9 +130,6 @@ app.controller('showTypePersonController',function($scope,$localStorage,$routePa
     }else{
         $scope.timeOut('sm',undefined);
     }
-    $scope.callback = function(response){
-        console.log(response);
-        alert('share callback');
-    }
+    
 });
 

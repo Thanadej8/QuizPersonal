@@ -2,14 +2,14 @@
   border: none;
   visibility: visible;
   width: auto;
-  height: 22px;
+  height: 30px;
   background: transparent;
   overflow: hidden;
   -webkit-text-size-adjust: none;
   color: #333;
   line-height: 1.28;
+  float: left;
   margin: 0;
-  padding: 0;
   text-align: left;
   direction: ltr;
   cursor: pointer;

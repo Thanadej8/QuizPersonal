@@ -9,6 +9,16 @@ body{
     font-size: 20px;
     font-family: Akzidenz;
 }
+.background-white{
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../image/backgroundwhite2.png");
+}
+.background-red{
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../image/backgroundred.png");
+}
 .btn{
     white-space: inherit;
 }
@@ -21,7 +31,9 @@ body{
     display: block;
     margin: auto;
     margin-bottom: 15px;
-    margin-top: 15px;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 100;
     outline: none;
 }
 .centered {

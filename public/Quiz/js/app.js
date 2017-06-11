@@ -43,17 +43,30 @@ app.run(function($FB){
 app.factory('Path_Api', function() {
     return {
         //image
-        path_test : "image/test.jpg",
-        path_test_url : "image/CDSposter5.jpg",
 
-        path_image_analyst_Front : "image/NFP&NFJ&FRONT.jpg",
-        path_image_analyst_Back : "image/NFP&NFJ&BACK.jpg",
-        path_image_diplomat_Front : "image/NTJ&NTP&FRONT.jpg",
-        path_image_diplomat_Back : "image/NTJ&NTP&BACK.jpg",
-        path_image_sentinel_Front : "image/STJ&SFJ&FRONT.jpg",
-        path_image_sentinel_Back : "image/STJ&SFJ&BACK.jpg",
-        path_image_explorer_Front : "image/STP&SFP&FRONT.jpg",
-        path_image_explorer_Back : "image/STP&SFP&BACK.jpg",
+        path_image_analyst_Front : "image/NTP&NTJ&FRONT.png",
+        path_image_analysy_Front_url : "http://quiz-personal.herokuapp.com/Quiz/image/NTP&NTJ&FRONT.png",
+
+        path_image_analyst_Back : "image/NTP&NTJ&BACK.png",
+        path_image_analysy_Back_url : "http://quiz-personal.herokuapp.com/Quiz/image/NTP&NTJ&BACK.png",
+
+        path_image_diplomat_Front : "image/NTJ&NTP&FRONT.png",
+        path_image_diplomat_Front_url : "http://quiz-personal.herokuapp.com/Quiz/image/NTJ&NTP&FRONT.png",
+
+        path_image_diplomat_Back : "image/NTJ&NTP&BACK.png",
+        path_image_diplomat_Back_url : "http://quiz-personal.herokuapp.com/Quiz/image/NTJ&NTP&BACK.png",
+
+        path_image_sentinel_Front : "image/STJ&SFJ&FRONT.png",
+        path_image_sentinel_Front_url : "http://quiz-personal.herokuapp.com/Quiz/image/STJ&SFJ&FRONT.png",
+
+        path_image_sentinel_Back : "image/STJ&SFJ&BACK.png",
+        path_image_sentinel_Back_url : "http://quiz-personal.herokuapp.com/Quiz/image/STJ&SFJ&BACK.png",
+
+        path_image_explorer_Front : "image/STP&SFP&FRONT.png",
+        path_image_explorer_Front_url : "http://quiz-personal.herokuapp.com/Quiz/image/STP&SFP&FRONT.png",
+
+        path_image_explorer_Back : "image/STP&SFP&BACK.png",
+        path_image_explorer_Back_url : "http://quiz-personal.herokuapp.com/Quiz/image/STP&SFP&BACK.png",
 
         api_login: "/api/user/login",
         api_post_question : "/api/answer",

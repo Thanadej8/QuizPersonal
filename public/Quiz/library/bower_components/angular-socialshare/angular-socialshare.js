@@ -49,7 +49,7 @@ angular.module('djds4rce.angular-socialshare', [])
 				shares: '='
 			},
 			transclude: true,
-			template: '<div class="facebookButton">' +
+			template: '<div class="facebookButton" style="margin: auto;display: block;">' +
 				'<div class="pluginButton">' +
 				'<div class="pluginButtonContainer">' +
 				'<div class="pluginButtonImage">' +
@@ -60,13 +60,8 @@ angular.module('djds4rce.angular-socialshare', [])
 				'<span class="pluginButtonLabel">Share</span>' +
 				'</div>' +
 				'</div>' +
-				'</div>' +
-				'<div class="facebookCount">' +
-				'<div class="pluginCountButton pluginCountNum">' +
-				'<span ng-transclude></span>' +
-				'</div>' +
-				'<div class="pluginCountButtonNub"><s></s><i></i></div>' +
-				'</div>',
+				'</div>'
+				,
 			link: function(scope, element, attr) {
 				attr.$observe('url', function() {
 					if (attr.shares && attr.url) {
@@ -159,7 +154,9 @@ angular.module('djds4rce.angular-socialshare', [])
 
 
 
-						);
+						).error(function() {
+
+						});
 					}
 					element.unbind();
 					element.bind('click', function(e) {
