@@ -82,7 +82,7 @@ app.controller('showTypePersonController',function($scope,$localStorage,$routePa
 
 
             $scope.image = Path_Api.path_test;
-
+            $scope.url_image =Path_Api.path_test_url;
             if($scope.user.job === "Front"){
 
                 $scope.url_image =Path_Api.path_test_url;
@@ -96,6 +96,7 @@ app.controller('showTypePersonController',function($scope,$localStorage,$routePa
         }else if(type === "NFP" || type === "NFJ"){
             $scope.viewDiplomat = true;
             $scope.image = Path_Api.path_test;
+            $scope.url_image =Path_Api.path_test_url;
             if($scope.user.job === "Front"){
                 $scope.image = Path_Api.path_test;
                 $scope.url_image =Path_Api.path_test_url;
@@ -109,6 +110,7 @@ app.controller('showTypePersonController',function($scope,$localStorage,$routePa
         }else if(type === "STJ" || type === "SFJ"){
             $scope.viewSentinel = true;
             $scope.image = Path_Api.path_test;
+            $scope.url_image =Path_Api.path_test_url;
             if($scope.user.job === "Front"){
                 $scope.image = Path_Api.path_test;
                 $scope.url_image =Path_Api.path_test_url;
