@@ -34,6 +34,8 @@ class UserController extends Controller
             'name' => $events['name'],
             'username' => $events['username'],
             'role' => $events['role'],
+            'job' => $events['job'],
+
         ];
         $user = User::create($arrData);
         return $user;
