@@ -1,5 +1,13 @@
-var app = angular.module("QuizPersonal", ["ngRoute","ngStorage","timer",'ui.bootstrap']);
+var app = angular.module("QuizPersonal", ["ngRoute","ngStorage","timer",'ui.bootstrap','djds4rce.angular-socialshare']);
+
+app.config(function($locationProvider){
+    $locationProvider.html5Mode({
+        enabled: false,
+        requireBase: false
+    });
+});
 app.config(function($routeProvider) {
+
     $routeProvider
 
         .when("/login", {
@@ -28,11 +36,16 @@ app.config(function($routeProvider) {
             controller : "previewController"
         });
 });
-
+app.run(function($FB){
+    $FB.init('245317315872785'); // Country code format example: fr_FR
+});
 
 app.factory('Path_Api', function() {
     return {
         //image
+        path_test : "image/test.jpg",
+        path_test_url : "image/CDSposter5.jpg",
+
         path_image_analyst_Front : "image/NFP&NFJ&FRONT.jpg",
         path_image_analyst_Back : "image/NFP&NFJ&BACK.jpg",
         path_image_diplomat_Front : "image/NTJ&NTP&FRONT.jpg",
