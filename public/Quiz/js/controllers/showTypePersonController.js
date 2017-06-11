@@ -130,6 +130,6 @@ app.controller('showTypePersonController',function($scope,$localStorage,$routePa
     }else{
         $scope.timeOut('sm',undefined);
     }
-    
+
 });
 

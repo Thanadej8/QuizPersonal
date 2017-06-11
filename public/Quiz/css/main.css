@@ -10,14 +10,33 @@ body{
     font-family: Akzidenz;
 }
 .background-white{
-    width: 100vw;
-    height: 100vh;
-    background-image: url("../image/backgroundwhite2.png");
+    background: url(../image/backgroundwhite2.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 100%;
+    /* Set up proportionate scaling */
+    width: 100%;
+    height: auto;
+
+    /* Set up positioning */
+    position: fixed;
+    top: 0;
+    left: 0;
+
 }
 .background-red{
-    width: 100vw;
-    height: 100vh;
-    background-image: url("../image/backgroundred.png");
+    background: url(../image/backgroundred.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 .btn{
     white-space: inherit;
@@ -91,13 +110,13 @@ body{
     position: relative;
 
 }
-.problem .header-problem .circle-time span{
-    font-weight: 100;
+.problem .header-problem .circle-time timer{
     font-size: 13px;
-    text-align: center;
+    font-weight: 100;
     position: absolute;
-    top: 5px;
-    left: 7px;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateY(-50%) translateX(-50%);
 
 }
 .problem .header-problem button.next-problem{
@@ -173,4 +192,24 @@ table tbody tr td {
     color: white;
     border: 1px solid white;
     outline: none;
+}
+.navbar-default{
+    background-image: none;
+    border: none;;
+    background-color: #c2001b;
+}
+
+img.bg {
+    /* Set rules to fill background */
+    min-height: 100%;
+
+
+    /* Set up proportionate scaling */
+    width: 100%;
+    height: auto;
+
+    /* Set up positioning */
+    position: fixed;
+    top: 0;
+    left: 0;
 }
