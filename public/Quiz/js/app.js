@@ -50,11 +50,11 @@ app.factory('Path_Api', function() {
         path_image_analyst_Back : "image/NTP&NTJ&BACK.png",
         path_image_analysy_Back_url : "http://quiz-personal.herokuapp.com/Quiz/image/NTP&NTJ&BACK.png",
 
-        path_image_diplomat_Front : "image/NTJ&NTP&FRONT.png",
-        path_image_diplomat_Front_url : "http://quiz-personal.herokuapp.com/Quiz/image/NTJ&NTP&FRONT.png",
+        path_image_diplomat_Front : "image/NFP&NFJ&FRONT.png",
+        path_image_diplomat_Front_url : "http://quiz-personal.herokuapp.com/Quiz/image/NFP&NFJ&FRONT.png",
 
-        path_image_diplomat_Back : "image/NTJ&NTP&BACK.png",
-        path_image_diplomat_Back_url : "http://quiz-personal.herokuapp.com/Quiz/image/NTJ&NTP&BACK.png",
+        path_image_diplomat_Back : "image/NFP&NFJ&BACK.png",
+        path_image_diplomat_Back_url : "http://quiz-personal.herokuapp.com/Quiz/image/NFP&NFJ&BACK.png",
 
         path_image_sentinel_Front : "image/STJ&SFJ&FRONT.png",
         path_image_sentinel_Front_url : "http://quiz-personal.herokuapp.com/Quiz/image/STJ&SFJ&FRONT.png",
