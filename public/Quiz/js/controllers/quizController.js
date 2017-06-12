@@ -220,7 +220,19 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
     };
 
     if($sessionStorage.user !== undefined){
-        getProblem($sessionStorage.user.question_id);
+        if($sessionStorage.user.question_id === "22"){
+            if($sessionStorage.user.person_type1 === null && $sessionStorage.user.person_type2 === null &&$sessionStorage.user.person_type3 === null){
+                checkAnswerQuestion()
+            }else{
+                $location.path('/showtypeperson');
+            }
+        }else{
+            getProblem($sessionStorage.user.question_id);
+        }
+        if($sessionStorage.user.person_type1 !== null && $sessionStorage.user.person_type2 !== null &&$sessionStorage.user.person_type3 !== null){
+
+        }
+
     }else{
         $scope.timeOut('sm',undefined)
     }

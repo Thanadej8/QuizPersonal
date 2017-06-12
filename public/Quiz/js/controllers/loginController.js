@@ -26,7 +26,12 @@ app.controller('loginController',function($scope,$localStorage,$routeParams,$htt
                                 $sessionStorage.user.question_id = "1";
                                 $location.path('/quiz');
                             }else if(data.question_id === "22"){
-                                $location.path('/showtypeperson');
+                                if(data.person_type1 === null && data.person_type2 === null && data.person_type3 === null){
+                                    checkAnswerQuestion()
+                                }else{
+                                    $location.path('/showtypeperson');
+                                }
+
                             }else{
                                 $location.path('/quiz');
                             }
@@ -45,6 +50,28 @@ app.controller('loginController',function($scope,$localStorage,$routeParams,$htt
 
     $scope.go = function (path) {
         $location.path(path);
+    }
+    function checkAnswerQuestion() {
+        var path = Path_Api.api_get_check_all_question + $sessionStorage.user.user_id;
+        $http.get(path)
+            .then(
+                function(response){
+                    var data = response.data;
+
+                    $scope.timeoutProblem = data;
+
+                    console.log($scope.timeoutProblem);
+                    if($scope.timeoutProblem.length === 0){
+                        $location.path('/showtypeperson');
+                    }else{
+                        $location.path('/quiz');
+
+                    }
+                },
+                function(response){
+                    // failure callback
+                }
+            );
     }
 
 
