@@ -187,6 +187,9 @@ table tbody tr td {
     padding: 10px 15px;
     outline: none;
 }
+.btn-choice span{
+    text-align: left;
+}
 .active-choice{
     background-color: #00aa98;
     color: white;
