@@ -11,7 +11,12 @@
                         <input type="text" class="form-control" placeholder="รหัสพนักงาน + เลขท้ายบัตรประชาชน 3 ตัว" aria-describedby="basic-addon1" ng-model="username">
                     </div>
                     <p style="text-align: center;color: #c2001b;margin-top: 10px">{{massage}}</p>
-                    <button type="submit" class="btn-preview-login" ng-click="login()">เริ่มทำแบบสอบถาม</button>
+                    <div class="alert alert-warning" role="alert" style="font-size: 14px;margin-top: 10px">รหัสของท่าน คือ รหัสพนักงาน 8 หลัก ตามด้วยเลขบัตรประชาชน 3 หลักสุดท้่าย
+                        <strong>ตัวอย่าง</strong> เช่น  รหัสพนักงาน 12345678 เลขบัตรประชาชน 3 1111 00567 85 9 รหัสของท่านคือ  12345678859
+                    </div>
+
+
+                    <button type="submit" class="btn-preview-login" ng-click="login()">เข้าสู่ระบบ</button>
                 </div>
             </div>
         </div>

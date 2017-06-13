@@ -21,9 +21,25 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
 
 
     $window.onpopstate = function () {
-
+        getUeser($sessionStorage.user.user_id);
     };
 
+
+    function getUeser(id) {
+
+        getOneUser.getData(id).then(
+            function(response){
+                var data = response.data;
+                console.log(data);
+                $sessionStorage.user = data[0];
+
+
+            },
+            function(response){
+                // failure call back
+            });
+
+    }
 
 
 
@@ -227,11 +243,10 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                 $location.path('/showtypeperson');
             }
         }else{
+            console.log($sessionStorage.user.user_id);
             getProblem($sessionStorage.user.question_id);
         }
-        if($sessionStorage.user.person_type1 !== null && $sessionStorage.user.person_type2 !== null &&$sessionStorage.user.person_type3 !== null){
 
-        }
 
     }else{
         $scope.timeOut('sm',undefined)
