@@ -127,6 +127,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
             function(response){
                 var data = response.data;
                 console.log(data);
+                $scope.problem = {};
                 $scope.problem = data;
                 $scope.$applyAsync();
             },
