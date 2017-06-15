@@ -113,4 +113,40 @@ class AnswerController extends Controller
         }
         return $arrUser;
     }
+
+    public function getAnswerByPage($page)
+    {
+        $query = "CAST(user_id AS INTEGER)";
+        $num = (intval($page) - 1) * 100;
+        if($num == 0){
+            $users_id = User::where('role', 'user')->select('user_id')->orderByRaw($query)->pluck('user_id')->limit(100)->toArray();
+        }
+        else{
+            $users_id = User::where('role', 'user')->select('user_id')->orderByRaw($query)->pluck('user_id')->limit(100)->offset($num)->toArray();
+        }
+        $user_answered_id = Answer::select('user_id')->distinct()->pluck('user_id')->toArray();
+
+        //return $user_answered_id->user_id;
+        $i = 0;
+        $arrUser = [];
+        $json = ([]);
+        for($i = 0; $i < count($users_id); ++$i){
+            $query = "CAST(question_id AS INTEGER)";
+            $user = Answer::where('user_id', $users_id[$i])->where('answer_type', '!=', 'no')->select('question_id', 'answer_type')->orderByRaw($query)->get()->toArray();
+            $arrUser[$i] = [
+                'user_id' => $users_id[$i],
+            ];
+            $arrUser[$i]['name'] = User::where('user_id', $users_id[$i])->pluck('name')->toArray();
+            $arrUser[$i]['person_type1'] = User::where('user_id', $users_id[$i])->pluck('person_type1')->toArray();
+            $arrUser[$i]['person_type2'] = User::where('user_id', $users_id[$i])->pluck('person_type2')->toArray();
+            $arrUser[$i]['person_type3'] = User::where('user_id', $users_id[$i])->pluck('person_type3')->toArray();
+            for($j = 0; $j < count($user); ++$j){
+                $arrUser[$i]['question_answer'][$j] = [
+                    'question_id' => $user[$j]['question_id'],
+                    'answer_type' => $user[$j]['answer_type'],
+                ];
+            }
+        }
+        return $arrUser;
+    }
 }
