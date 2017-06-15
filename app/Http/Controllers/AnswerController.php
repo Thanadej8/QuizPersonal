@@ -196,6 +196,6 @@ class AnswerController extends Controller
 
     public function getAnswerByID($id)
     {
-        return Answer::where('user_id', $id);
+        return Answer::where('user_id', $id)->get();
     }
 }
