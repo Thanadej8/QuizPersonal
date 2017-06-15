@@ -193,4 +193,9 @@ class AnswerController extends Controller
         }
         return $arrUser;
     }
+
+    public function getAnswerByID($id)
+    {
+        return Answer::where('user_id', $id);
+    }
 }
