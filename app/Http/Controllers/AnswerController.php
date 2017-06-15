@@ -119,10 +119,10 @@ class AnswerController extends Controller
         $query = "CAST(user_id AS INTEGER)";
         $num = (intval($page) - 1) * 100;
         if($num == 0){
-            $users_id = User::where('role', 'user')->select('user_id')->orderByRaw($query)->pluck('user_id')->limit(100)->toArray();
+            $users_id = User::where('role', 'user')->limit(100)->select('user_id')->orderByRaw($query)->pluck('user_id')->toArray();
         }
         else{
-            $users_id = User::where('role', 'user')->select('user_id')->orderByRaw($query)->pluck('user_id')->limit(100)->offset($num)->toArray();
+            $users_id = User::where('role', 'user')->limit(100)->offset($num)->select('user_id')->orderByRaw($query)->pluck('user_id')->toArray();
         }
         $user_answered_id = Answer::select('user_id')->distinct()->pluck('user_id')->toArray();
 
