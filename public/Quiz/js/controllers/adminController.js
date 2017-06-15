@@ -1,12 +1,26 @@
 
-app.controller('adminController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,$uibModal,$log,allUser,Path_Api,getOneUser,$sessionStorage) {
+app.controller('adminController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,$uibModal,$log,allUser,Path_Api,getOneUser,$sessionStorage,getUserAdmin) {
 
     $scope.user = $sessionStorage.user;
 
     $scope.go = function (path) {
         $location.path(path);
     }
-    
+
+
+
+    function getUserPage(page) {
+        getUserAdmin.getData(page).then(
+            function(response){
+                var data = response.data;
+                console.log(data);
+                $scope.allUser = data;
+
+            },
+            function(response){
+                // failure call back
+            });
+    }
 
 
     $scope.getAllUser = function() {
@@ -86,10 +100,41 @@ app.controller('adminController',function($scope,$localStorage,$routeParams,$htt
 
 
     if($sessionStorage.user !== undefined){
-        $scope.getAllUser();
+        getUserPage(1);
 
     }else{
         $scope.timeOut('sm',undefined);
     }
+
+
+    $scope.totalItems = 65;
+    $scope.currentPage = 1;
+
+    $scope.setPage = function (pageNo) {
+        $scope.currentPage = pageNo;
+
+    };
+
+    $scope.pageChanged = function() {
+        $log.log('Page changed to: ' + $scope.currentPage);
+    };
+
+    $scope.maxSize = 20;
+    $scope.bigTotalItems = 650;
+    $scope.bigCurrentPage = 1;
+
+
+    $scope.$watch(function () { return $scope.bigCurrentPage; }, function (newData, oldData) {
+        if(newData !== null){
+            getUserPage(newData);
+        }
+
+
+
+
+    });
+
+
+
 });
 

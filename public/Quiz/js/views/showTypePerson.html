@@ -6,9 +6,22 @@
             <div class="col-md-12 ">
                 <div class="form-all">
                     <h2 style="text-align: center;">คุณเป็นบุคคลประเภท</h2>
+                    <h3 style="color:red">{{user.person_type1}}{{user.person_type2}}{{user.person_type3}}</h3>
                     <img style="width: 100%;height: auto;" src="{{image}}">
                     <!--<div facebook style="margin:10px auto;display: block" class="facebookShare" data-title='testShare' data-picture-url='{{url_image}}' data-url='{{url_image}}' data-shares='shares' >{{ shares }}  </div>-->
-                    <a style="display: block;margin: auto;margin-top: 20px;" class="btn btn-primary" href="{{image}}" download>โหลดรูปภาพ</a>
+                    <div class="alert alert-warning" role="alert" style="font-size: 14px;margin-top: 10px">
+
+                        <per>
+                            สำหรับ iPhone หรือ iPad กดค้างทีรูป และ กดปุ่ม บันทึกรูปภาพ
+                            <br>
+                            สำหรับ Android กดปุ่ม บันทึกรูปภาพ
+                        </per>
+
+                    </div>
+
+
+                    <a style="display: block;margin: auto;margin-top: 20px;" class="btn btn-primary" href="{{image}}" download>บันทึกรูปภาพ</a>
+
                     <button ng-click="logout()" class="btn-preview-login" >ออกจากระบบ</button>
                 </div>
             </div>

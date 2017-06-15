@@ -16,7 +16,7 @@ app.controller('loginController',function($scope,$localStorage,$routeParams,$htt
                     var data = response.data;
                     console.log(data);
                     if(data.msg === "username is incorrect"){
-                        $scope.massage = "รหัสของท่านไม่ถูกต้อง";
+                        $scope.massage = "ขออภัยค่ะ ข้อมูลไม่ถูกต้อง ไม่สามารถเข้าสู่ระบบได้";
                     }else{
                         $sessionStorage.user = data;
 

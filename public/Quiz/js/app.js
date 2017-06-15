@@ -75,7 +75,7 @@ app.factory('Path_Api', function() {
         api_get_all_user_admin : "/api/answer/get",
         api_dowload_excal : "/api/ExportExcel",
         api_get_one_user : "/api/user/",
-
+        api_get_user_admin : "/api/answer/get/"
 
     };
 });
