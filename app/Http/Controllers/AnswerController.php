@@ -88,12 +88,9 @@ class AnswerController extends Controller
     {
         $query = "CAST(user_id AS INTEGER)";
         $users_id = User::where('role', 'user')->select('user_id')->orderByRaw($query)->pluck('user_id')->toArray();
-        $user_answered_id = Answer::select('user_id')->distinct()->pluck('user_id')->toArray();
-
-        //return $user_answered_id->user_id;
-        $i = 0;
         $arrUser = [];
-        $json = ([]);
+        $query = "CAST(question_id AS INTEGER)";
+        $questions = Question::select('question_id')->orderByRaw($query)->pluck('question_id')->toArray();
         for($i = 0; $i < count($users_id); ++$i){
             $query = "CAST(question_id AS INTEGER)";
             $user = Answer::where('user_id', $users_id[$i])->where('answer_type', '!=', 'no')->select('question_id', 'answer_type')->orderByRaw($query)->get()->toArray();
@@ -104,12 +101,37 @@ class AnswerController extends Controller
             $arrUser[$i]['person_type1'] = User::where('user_id', $users_id[$i])->pluck('person_type1')->toArray();
             $arrUser[$i]['person_type2'] = User::where('user_id', $users_id[$i])->pluck('person_type2')->toArray();
             $arrUser[$i]['person_type3'] = User::where('user_id', $users_id[$i])->pluck('person_type3')->toArray();
-            for($j = 0; $j < count($user); ++$j){
+            if($user == null){
+                for($k = 0; $k < count($questions); ++$k){
+                    $arrUser[$i]['question_answer'][$k] = [
+                        'question_id' => $questions[$k],
+                        'answer_type' => '',
+                    ];
+                }
+            }
+            else{
+                for($k = 0, $j = 0; $k < count($questions); ++$k){
+                    if($j != count($user) && $questions[$k] == $user[$j]['question_id']){
+                        $arrUser[$i]['question_answer'][$k] = [
+                            'question_id' => $user[$j]['question_id'],
+                            'answer_type' => $user[$j]['answer_type'],
+                        ];
+                        ++$j;
+                    }
+                    else{
+                        $arrUser[$i]['question_answer'][$k] = [
+                            'question_id' => $questions[$k],
+                            'answer_type' => '',
+                        ];
+                    }
+                }
+            }
+            /*for($j = 0; $j < count($user); ++$j){
                 $arrUser[$i]['question_answer'][$j] = [
                     'question_id' => $user[$j]['question_id'],
                     'answer_type' => $user[$j]['answer_type'],
                 ];
-            }
+            }*/
         }
         return $arrUser;
     }
@@ -124,12 +146,9 @@ class AnswerController extends Controller
         else{
             $users_id = User::where('role', 'user')->limit(100)->offset($num)->select('user_id')->orderByRaw($query)->pluck('user_id')->toArray();
         }
-        $user_answered_id = Answer::select('user_id')->distinct()->pluck('user_id')->toArray();
-
-        //return $user_answered_id->user_id;
-        $i = 0;
         $arrUser = [];
-        $json = ([]);
+        $query = "CAST(question_id AS INTEGER)";
+        $questions = Question::select('question_id')->orderByRaw($query)->pluck('question_id')->toArray();
         for($i = 0; $i < count($users_id); ++$i){
             $query = "CAST(question_id AS INTEGER)";
             $user = Answer::where('user_id', $users_id[$i])->where('answer_type', '!=', 'no')->select('question_id', 'answer_type')->orderByRaw($query)->get()->toArray();
@@ -140,12 +159,37 @@ class AnswerController extends Controller
             $arrUser[$i]['person_type1'] = User::where('user_id', $users_id[$i])->pluck('person_type1')->toArray();
             $arrUser[$i]['person_type2'] = User::where('user_id', $users_id[$i])->pluck('person_type2')->toArray();
             $arrUser[$i]['person_type3'] = User::where('user_id', $users_id[$i])->pluck('person_type3')->toArray();
-            for($j = 0; $j < count($user); ++$j){
+            if($user == null){
+                for($k = 0; $k < count($questions); ++$k){
+                    $arrUser[$i]['question_answer'][$k] = [
+                        'question_id' => $questions[$k],
+                        'answer_type' => '',
+                    ];
+                }
+            }
+            else{
+                for($k = 0, $j = 0; $k < count($questions); ++$k){
+                    if($j != count($user) && $questions[$k] == $user[$j]['question_id']){
+                        $arrUser[$i]['question_answer'][$k] = [
+                            'question_id' => $user[$j]['question_id'],
+                            'answer_type' => $user[$j]['answer_type'],
+                        ];
+                        ++$j;
+                    }
+                    else{
+                        $arrUser[$i]['question_answer'][$k] = [
+                            'question_id' => $questions[$k],
+                            'answer_type' => '',
+                        ];
+                    }
+                }
+            }
+            /*for($j = 0; $j < count($user); ++$j){
                 $arrUser[$i]['question_answer'][$j] = [
                     'question_id' => $user[$j]['question_id'],
                     'answer_type' => $user[$j]['answer_type'],
                 ];
-            }
+            }*/
         }
         return $arrUser;
     }
