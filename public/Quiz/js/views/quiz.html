@@ -26,14 +26,15 @@
                             <div class="col-md-12 ">
 
                                 <button class="btn-choice" ng-disabled="isNextProblem" ng-class="isLoadingChoice1 ? 'active-choice': ''" ng-click="selectChoice(1,problem.choice1_type)" >
-                                    1.<span ng-bind-html='problem.choice1'></span>
+                                    1.<!--<span ng-bind-html='problem.choice1'></span>-->
+                                    <span>{{problem.choice1}}</span>
                                 </button>
                             </div>
                             <div class="col-md-12 ">
 
                                 <button class="btn-choice" ng-disabled="isNextProblem" ng-class="isLoadingChoice2 ? 'active-choice': ''" ng-click="selectChoice(2,problem.choice2_type)">
-                                    2.<span ng-bind-html='problem.choice2'></span>
-
+                                    2.<!--<span ng-bind-html='problem.choice2'></span>-->
+                                    <span>{{problem.choice2}}</span>
                                 </button>
 
                             </div>
