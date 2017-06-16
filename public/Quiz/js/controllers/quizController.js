@@ -1,5 +1,5 @@
 
-app.controller('quizController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,problem,$window,Path_Api,$uibModal,$log,getOneUser,$sessionStorage) {
+app.controller('quizController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,problem,$window,Path_Api,$uibModal,$log,getOneUser,$sessionStorage,$sce) {
     $scope.user = $sessionStorage.user;
 
     $scope.isLoadingChoice1 = false;
@@ -127,8 +127,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
             function(response){
                 var data = response.data;
                 console.log(data);
-                $scope.problem = {};
-                $scope.problem = data;
+                $scope.problem = parseStringtoHTML(data);
                 $scope.$applyAsync();
             },
             function(response){
@@ -136,7 +135,11 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
             });
 
     }
-    
+    function parseStringtoHTML(data){
+        data.choice1 = $sce.trustAsHtml(data.choice1);
+        data.choice2 = $sce.trustAsHtml(data.choice2);
+        return data;
+    }
 
     $scope.selectChoice = function (choice,type_choice) {
 

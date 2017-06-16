@@ -26,15 +26,23 @@
                             <div class="col-md-12 ">
 
                                 <button class="btn-choice" ng-disabled="isNextProblem" ng-class="isLoadingChoice1 ? 'active-choice': ''" ng-click="selectChoice(1,problem.choice1_type)" >
-                                    <!--<span ng-bind-html='problem.choice1'></span>-->
-                                    <span>1.{{problem.choice1}}</span>
-                                </button>
-                            </div>
-                            <div class="col-md-12 ">
+                                    <p style="text-align: left">
+                                        <span >1.</span>
+                                        <span ng-bind-html='problem.choice1'></span>
+                                    </p>
+                                    <!-- <span>1.{{problem.choice1}}</span>-->
+                                 </button>
+                             </div>
+                             <div class="col-md-12 ">
 
-                                <button class="btn-choice" ng-disabled="isNextProblem" ng-class="isLoadingChoice2 ? 'active-choice': ''" ng-click="selectChoice(2,problem.choice2_type)">
-                                    <!--<span ng-bind-html='problem.choice2'></span>-->
-                                    <span>2.{{problem.choice2}}</span>
+                                 <button class="btn-choice" ng-disabled="isNextProblem" ng-class="isLoadingChoice2 ? 'active-choice': ''" ng-click="selectChoice(2,problem.choice2_type)">
+                                     <p style="text-align: left">
+                                         <span>2.</span>
+                                         <span ng-bind-html='problem.choice2'></span>
+                                     </p>
+
+
+                                     <!--<span>2.{{problem.choice2}}</span>-->
                                 </button>
 
                             </div>
