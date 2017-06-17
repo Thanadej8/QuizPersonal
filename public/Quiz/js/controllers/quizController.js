@@ -128,6 +128,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                 var data = response.data;
                 console.log(data);
                 $scope.problem = parseStringtoHTML(data);
+                console.log($scope.problem);
                 $scope.$applyAsync();
             },
             function(response){
@@ -136,6 +137,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
 
     }
     function parseStringtoHTML(data){
+        data.question_name = $sce.trustAsHtml(data.question_name);
         data.choice1 = $sce.trustAsHtml(data.choice1);
         data.choice2 = $sce.trustAsHtml(data.choice2);
         return data;
