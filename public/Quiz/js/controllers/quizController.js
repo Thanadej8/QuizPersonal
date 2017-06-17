@@ -6,7 +6,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
     $scope.isLoadingChoice2 = false;
     $scope.isNextProblem = false;
 
-    var seconds = 0;
+    $scope.seconds = 0;
     $scope.answer = "no";
     $scope.problem;
     $scope.answer;
@@ -53,12 +53,14 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
     }
     $scope.stopTimer = function (){
         $scope.timerRunning = false;
+        console.log("stop time");
         $scope.$broadcast('timer-stop');
 
     };
 
     $scope.$on('timer-stopped', function (event, data){
-        seconds = data.seconds;
+        $scope.seconds = data.seconds;
+        console.log($scope.seconds);
         if(data.seconds === 0 && $sessionStorage.user !== undefined){
             $scope.nextProblem();
         }
@@ -169,9 +171,12 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
     
     $scope.nextProblem = function() {
         $scope.isNextProblem = true;
-        if(seconds !== 0){
+        console.log($scope.timerRunning);
+        if($scope.timerRunning){
+            console.log($scope.timerRunning);
             $scope.stopTimer();
         }
+
 
 
         var dataSelectChoice = {
@@ -249,7 +254,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                 $location.path('/showtypeperson');
             }
         }else{
-            console.log($sessionStorage.user.user_id);
+            //console.log($sessionStorage.user.user_id);
             getProblem($sessionStorage.user.question_id);
         }
 
