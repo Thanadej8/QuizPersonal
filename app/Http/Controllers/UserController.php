@@ -192,7 +192,7 @@ class UserController extends Controller
             ,$person_type];
             //return $sheetArray;
         }
-        return $sheetArray;
+        //return $sheetArray;
         Excel::create('users', function($excel) use($sheetArray) {
             $excel->sheet('Sheet1', function($sheet) use($sheetArray) {
                 $sheet->fromArray($sheetArray);
