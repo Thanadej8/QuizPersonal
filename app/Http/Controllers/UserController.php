@@ -159,18 +159,23 @@ class UserController extends Controller
     public function ExportExcel(){
 
        $answer =  $this->getAnswer();
-        if($answer[0]['person_type1']){
+        /*if($answer[0]['person_type1'] == null){
             $answer[0]['person_type1'] = "";
             $answer[0]['person_type2'] = "";
             $answer[0]['person_type3'] = "";
-        }
+        }*/
         $sheetArray = array();
+
+        //return $person_type ;
 
         $sheetArray[] = array('Name','ประเภทที่ 1 ข้อ1','ประเภทที่ 1 ข้อ2','ประเภทที่ 1 ข้อ3','ประเภทที่ 1 ข้อ4','ประเภทที่ 1 ข้อ5','ประเภทที่ 1 ข้อ6','ประเภทที่ 1 ข้อ7','ประเภทที่ 2 ข้อ1','ประเภทที่ 2 ข้อ2','ประเภทที่ 2 ข้อ3','ประเภทที่ 2 ข้อ4','ประเภทที่ 2 ข้อ5','ประเภทที่ 2 ข้อ6','ประเภทที่ 2 ข้อ7','ประเภทที่ 3 ข้อ1','ประเภทที่ 3 ข้อ2','ประเภทที่ 3 ข้อ3','ประเภทที่ 3 ข้อ4','ประเภทที่ 3 ข้อ5','ประเภทที่ 3 ข้อ6','ประเภทที่ 3 ข้อ7','สรุปเป็นประเภท     ');
         //$Data = user::select('name', 'person_type1', 'person_type2', 'person_type3')->get();
 
         for($i = 0; $i < count($answer); ++$i){
-            if($answer[$i]['person_type1']){
+            $person_type = implode($answer[$i]['person_type1']);
+            $person_type .= implode($answer[$i]['person_type2']);
+            $person_type .= implode($answer[$i]['person_type3']);
+            if(implode($answer[$i]['person_type1']) == null){
                 $answer[$i]['person_type1'] = "";
                 $answer[$i]['person_type2'] = "";
                 $answer[$i]['person_type3'] = "";
@@ -184,7 +189,7 @@ class UserController extends Controller
             ,$answer[$i]['question_answer'][12]['answer_type'],$answer[$i]['question_answer'][13]['answer_type'],$answer[$i]['question_answer'][14]['answer_type']
             ,$answer[$i]['question_answer'][15]['answer_type'],$answer[$i]['question_answer'][16]['answer_type'],$answer[$i]['question_answer'][17]['answer_type']
             ,$answer[$i]['question_answer'][18]['answer_type'],$answer[$i]['question_answer'][19]['answer_type'],$answer[$i]['question_answer'][20]['answer_type']
-            ,$answer[$i]['person_type1'] . $answer[$i]['person_type2'] . $answer[$i]['person_type3']];
+            ,$person_type];
             //return $sheetArray;
         }
         //return $sheetArray;
@@ -192,7 +197,7 @@ class UserController extends Controller
             $excel->sheet('Sheet1', function($sheet) use($sheetArray) {
                 $sheet->fromArray($sheetArray);
             });
-        })->export('csv');
+        })->export('xlsx');
 
         return 'finish';
     }
