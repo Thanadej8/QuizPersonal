@@ -68,14 +68,14 @@ app.factory('Path_Api', function() {
         path_image_explorer_Back : "image/STP&SFP&BACK.png",
         path_image_explorer_Back_url : "http://quiz-personal.herokuapp.com/Quiz/image/STP&SFP&BACK.png",
 
-        api_login: "/api/user/login",
-        api_post_question : "/api/answer",
-        api_get_question : "/api/question/",
-        api_get_check_all_question : "/api/answer/after/",
-        api_get_all_user_admin : "/api/answer/get",
-        api_dowload_excal : "/api/ExportExcel",
-        api_get_one_user : "/api/user/",
-        api_get_user_admin : "/api/answer/get/"
+        api_login: "/QuizPersonal/api/user/login",
+        api_post_question : "/QuizPersonal/api/answer",
+        api_get_question : "/QuizPersonal/api/question/",
+        api_get_check_all_question : "/QuizPersonal/api/answer/after/",
+        api_get_all_user_admin : "/QuizPersonal/api/answer/get",
+        api_dowload_excal : "/QuizPersonal/api/ExportExcel",
+        api_get_one_user : "/QuizPersonal/api/user/",
+        api_get_user_admin : "/QuizPersonal/api/answer/get/"
 
     };
 });
