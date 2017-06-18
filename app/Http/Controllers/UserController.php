@@ -180,7 +180,7 @@ class UserController extends Controller
                 $answer[$i]['person_type2'] = "";
                 $answer[$i]['person_type3'] = "";
             }
-            $name = $answer[$i]['name'];
+            $name = $answer[$i]['name'][0];
             $ans1 = $answer[$i]['question_answer'][0]['answer_type'];
             $sheetArray[] = [$name,$answer[$i]['question_answer'][0]['answer_type'],$answer[$i]['question_answer'][1]['answer_type'],$answer[$i]['question_answer'][2]['answer_type']
             ,$answer[$i]['question_answer'][3]['answer_type'],$answer[$i]['question_answer'][4]['answer_type'],$answer[$i]['question_answer'][5]['answer_type']
@@ -192,7 +192,7 @@ class UserController extends Controller
             ,$person_type];
             //return $sheetArray;
         }
-        //return $sheetArray;
+        return $sheetArray;
         Excel::create('users', function($excel) use($sheetArray) {
             $excel->sheet('Sheet1', function($sheet) use($sheetArray) {
                 $sheet->fromArray($sheetArray);
