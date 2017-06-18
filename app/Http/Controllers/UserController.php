@@ -6,6 +6,9 @@ use App\User;
 use Illuminate\Http\Request;
 use Excel;
 use Log;
+use app\Http\Controllers\AnswerController;
+use App\Answer;
+
 class UserController extends Controller
 {
 
@@ -80,7 +83,7 @@ class UserController extends Controller
 
     public function readExcel()
     {
-        $path =  "D:\\xampp\\htdocs\\QuizPersonal\\public\\User.xlsx";
+        $path =  "D:\\xampp\\htdocs\\QuizPersonal\\public\\Userupdate.xlsx";
         $data = Excel::load($path, function ($reader){
         })->get();
 
@@ -102,11 +105,14 @@ class UserController extends Controller
 
     public function ExportExcel(){
 
+       $answer =  app('App\Http\Controllers\AnswerController')->getAnswer();
+
+
         $Data = user::select('name', 'person_type1', 'person_type2', 'person_type3')->get();
 
-        Excel::create('users', function($excel) use($Data) {
-            $excel->sheet('Sheet1', function($sheet) use($Data) {
-                $sheet->fromArray($Data);
+        Excel::create('users', function($excel) use($answer) {
+            $excel->sheet('Sheet1', function($sheet) use($answer) {
+                $sheet->fromArray($answer);
             });
         })->export('xlsx');
 

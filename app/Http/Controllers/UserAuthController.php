@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 
+
 class UserAuthController extends Controller
 {
     public function loginUser(Request $request)
