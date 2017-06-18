@@ -25,7 +25,7 @@ class AnswerController extends Controller
             'set' => $events['set'],
         ];
         $user = User::where('user_id', $events['user_id'])->first();
-        if($user->question_id === '22'){
+        if($user->question_id === '22' || Answer::where('user_id', $user->user_id)->where('question_id', $user->question_id)->get() != null){
             Answer::where('user_id', $events['user_id'])->where('question_id', $events['problem_id'])->update(['answer_type' => $events['answer']]);
         }
         else{
