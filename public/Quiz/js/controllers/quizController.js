@@ -167,7 +167,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                     var evObj = document.createEvent('MouseEvents');
                     evObj.initMouseEvent('click', true, true, window);
                     a2.dispatchEvent(evObj);
-                    
+                    $scope.selectChoice("Reset",null);
                 }, 1000);
                 console.log($scope.problem);
 
