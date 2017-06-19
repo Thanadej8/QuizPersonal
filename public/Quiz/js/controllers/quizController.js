@@ -1,7 +1,7 @@
 
 app.controller('quizController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,problem,$window,Path_Api,$uibModal,$log,getOneUser,$sessionStorage,$sce) {
     $scope.user = $sessionStorage.user;
-
+    console.log($sessionStorage.user);
     $scope.isLoadingChoice1 = false;
     $scope.isLoadingChoice2 = false;
     $scope.isNextProblem = false;
@@ -16,14 +16,24 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
     $scope.go = function (path) {
         $location.path(path);
     }
-
+    $scope.isReload = false;
 
 
 
     $window.onpopstate = function () {
         getUeser($sessionStorage.user.user_id);
     };
+    if (window.performance) {
+        console.log("window.performance work's fine on this browser");
+    }
+    if (performance.navigation.type == 1) {
+        console.log( "This page is reloaded" );
+        $scope.isReload = true;
+        getUeser($sessionStorage.user.user_id);
 
+    } else {
+        console.log( "This page is not reloaded");
+    }
 
     function getUeser(id) {
 
@@ -32,7 +42,15 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                 var data = response.data;
                 console.log(data);
                 $sessionStorage.user = data[0];
+                if($scope.isReload){
+                    if($sessionStorage.user.question_id !== "22"){
+                        console.log($sessionStorage.user);
+                        $scope.isReload = false;
+                        getProblem($sessionStorage.user.question_id);
+                    }
 
+
+                }
 
             },
             function(response){
@@ -131,8 +149,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                 console.log(data);
                 $scope.problem = data;
                 console.log($scope.problem);
-                 $scope.$apply();
-                console.log($scope.problem);
+
             },
             function(response){
                 // failure call back
@@ -195,6 +212,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                     // success
                     var data = response.data;
                     console.log(data);
+                    $sessionStorage.user = data;
                     if(data.question_id === "22"){
                         checkAnswerQuestion();
                     }else{
@@ -255,8 +273,11 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                 $location.path('/showtypeperson');
             }
         }else{
-            //console.log($sessionStorage.user.user_id);
-            getProblem($sessionStorage.user.question_id);
+            if(!$scope.isReload){
+                console.log($sessionStorage.user.question_id);
+                getProblem($sessionStorage.user.question_id);
+            }
+
         }
 
 
