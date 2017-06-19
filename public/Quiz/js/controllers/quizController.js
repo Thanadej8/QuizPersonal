@@ -168,11 +168,13 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                     evObj.initMouseEvent('click', true, true, window);
                     a.dispatchEvent(evObj);
                     a.removeAttribute("style");
+                    
+                    click2();
                     $scope.selectChoice("Reset",null);
 
-                }, 10);
+                }, 1);
 
-                click2();
+
 
 
 
