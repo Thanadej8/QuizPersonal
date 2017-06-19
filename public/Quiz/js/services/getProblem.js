@@ -1,5 +1,5 @@
 
-app.factory('problem', function($http,Path_Api) {
+app.factory('problem', function($http,Path_Api,$q) {
     var urlBase = Path_Api.api_get_question;
     var problem = {};
 

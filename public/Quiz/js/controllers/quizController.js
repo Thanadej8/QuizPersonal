@@ -151,10 +151,11 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
 
         problem.getData(id).then(
             function(response){
-                var data = parseStringtoHTML(response.data);
+                var data = response.data;
                 console.log(data);
 
                 $scope.problem = data;
+
                 console.log($scope.problem);
 
             },
@@ -163,12 +164,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
             });
 
     }
-    function parseStringtoHTML(data){
-        data.question_name = $sce.trustAsHtml(data.question_name);
-        data.choice1 = $sce.trustAsHtml(data.choice1);
-        data.choice2 = $sce.trustAsHtml(data.choice2);
-        return data;
-    }
+
 
 
 
@@ -232,7 +228,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                         changeProbelm(data.question_id);
                         $scope.resetClock();
                         $scope.startTimer();
-                        location.reload();
+
 
                     }
 
@@ -276,7 +272,6 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                         changeProbelm($scope.timeoutProblem[random].question_id);
                         $scope.resetClock();
                         $scope.startTimer();
-                        location.reload();
 
                     }
                 },

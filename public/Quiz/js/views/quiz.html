@@ -18,31 +18,45 @@
                         <p class="lead" ng-bind-html="problem.question_name">
 
                         </p>
-                        <hr>
 
+                        <div class="row">
+                            <div class="col-md-12"style="margin-bottom: 10px">
+                                <p><strong>ข้อที่1 : </strong>{{problem.choice1}}</p>
+                            </div>
+                            <div class="col-md-12 " style="margin-bottom: 10px">
+                                <p><strong>ข้อที่2 : </strong>{{problem.choice2}}</p>
+                            </div>
 
-
-                        <div class="col-md-12"style="margin-bottom: 10px">
-                            <button role="button" name="choice1" class="btn-choice" ng-disabled="isNextProblem" ng-class="isLoadingChoice1 ? 'active-choice': ''" ng-click="selectChoice(1,problem.choice1_type)" >
-                                <p style="text-align: left">1.<span ng-bind-html='problem.choice1'></span></p>
-                            </button>
-                        </div>
-                        <div class="col-md-12"style="margin-bottom: 10px">
-                            <button role="button" name="choice2" class="btn-choice" ng-disabled="isNextProblem" ng-class="isLoadingChoice2 ? 'active-choice': ''" ng-click="selectChoice(2,problem.choice2_type)" >
-                                <p style="text-align: left">2.<span ng-bind-html='problem.choice2'></span></p>
-                            </button>
-                        </div>
-                        <div class="col-md-12 ">
-                            <button style="display: block;margin:10px auto;padding: 10px 15px;" class="btn btn-warning" ng-click="nextProblem()" ng-disabled="isLoadingChoice1 === false && isLoadingChoice2 == false || isNextProblem == true" ng-class="isNextProblem ? 'active': ''">
-                                <span ng-show="isNextProblem === true"><i class="fa fa-spinner fa-spin fa-fw"></i></span>
-                                <span ng-show="isNextProblem === false">ถัดไป</span>
-                            </button>
                         </div>
 
+                    </div>
+                    <div class="footer-problem">
+                        <div class="row">
+                            <div class="col-md-6 col-xs-6">
+                                <button role="button" name="choice1" class="btn-choice" ng-disabled="isNextProblem" ng-class="isLoadingChoice1 ? 'active-choice': ''" ng-click="selectChoice(1,problem.choice1_type)" >
+                                    ตอบข้อ 1
+                                </button>
+                            </div>
+                            <div class="col-md-6 col-xs-6">
+                                <button role="button" name="choice2" class="btn-choice" ng-disabled="isNextProblem" ng-class="isLoadingChoice2 ? 'active-choice': ''" ng-click="selectChoice(2,problem.choice2_type)" >
+                                    ตอบข้อ 2
+                                </button>
+                            </div>
+
+                        </div>
+                        <div class="row" style="margin-top: 15px">
+                            <div class="col-md-12 " >
+                                <button style="display: block;margin: auto;padding: 10px 15px;position:relative;bottom:0" class="btn btn-warning" ng-click="nextProblem()" ng-disabled="isLoadingChoice1 === false && isLoadingChoice2 == false || isNextProblem == true" ng-class="isNextProblem ? 'active': ''">
+                                    <span ng-show="isNextProblem === true"><i class="fa fa-spinner fa-spin fa-fw"></i></span>
+                                    <span ng-show="isNextProblem === false">ถัดไป</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
 
                 </div>
+
             </div>
         </div>
 
