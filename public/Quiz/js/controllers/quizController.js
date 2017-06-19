@@ -131,9 +131,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                 console.log(data);
                 $scope.problem = data;
                 console.log($scope.problem);
-                 $scope.$apply(function () {
-                     $scope.problem = data;
-                 });
+                $scope.$apply();
                 console.log($scope.problem);
             },
             function(response){
@@ -171,7 +169,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
         }
 
     };
-    
+
     $scope.nextProblem = function() {
         $scope.isNextProblem = true;
         console.log($scope.timerRunning);
@@ -188,8 +186,8 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
             answer : $scope.answer,
             set : $scope.problem.set,
 
-         }
-         console.log(dataSelectChoice);
+        }
+        console.log(dataSelectChoice);
         $http.post(Path_Api.api_post_question, dataSelectChoice)
             .then(
                 function(response){
@@ -207,7 +205,6 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                         $scope.startTimer();
 
                     }
-
                 },
                 function(response){
                     // failure callback
@@ -217,7 +214,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
 
 
     };
-    
+
     function checkAnswerQuestion() {
         var path = Path_Api.api_get_check_all_question + $sessionStorage.user.user_id;
         $http.get(path)
@@ -244,7 +241,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                 }
             );
     }
-    
+
     function changeProbelm(id) {
         getProblem(id);
     };
