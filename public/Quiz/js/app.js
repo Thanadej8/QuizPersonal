@@ -80,3 +80,6 @@ app.factory('Path_Api', function() {
     };
 });
 
+app.config(['$compileProvider', function ($compileProvider) {
+    $compileProvider.debugInfoEnabled(false);
+}]);
