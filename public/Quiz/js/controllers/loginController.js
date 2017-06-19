@@ -24,6 +24,7 @@ app.controller('loginController',function($scope,$localStorage,$routeParams,$htt
                         if(data.role === "user"){
                             if(data.question_id === null){
                                 $sessionStorage.user.question_id = "1";
+
                                 $location.path('/quiz');
                             }else if(data.question_id === "22"){
                                 if(data.person_type1 === null && data.person_type2 === null && data.person_type3 === null){

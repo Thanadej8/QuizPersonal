@@ -25,7 +25,7 @@ class AnswerController extends Controller
             'set' => $events['set'],
         ];
         $user = User::where('user_id', $events['user_id'])->first();
-        if($user->question_id === '22' || Answer::where('user_id', $user->user_id)->where('question_id', $user->question_id)->get() != null){
+        if($user->question_id === '22'){
             Answer::where('user_id', $events['user_id'])->where('question_id', $events['problem_id'])->update(['answer_type' => $events['answer']]);
         }
         else{
@@ -86,13 +86,13 @@ class AnswerController extends Controller
 
     public function getAnswer()
     {
-        $query = "CAST(user_id AS INTEGER)";
+        $query = "CAST(user_id AS SIGNED)";
         $users_id = User::where('role', 'user')->select('user_id')->orderByRaw($query)->pluck('user_id')->toArray();
         $arrUser = [];
-        $query = "CAST(question_id AS INTEGER)";
+        $query = "CAST(question_id AS SIGNED)";
         $questions = Question::select('question_id')->orderByRaw($query)->pluck('question_id')->toArray();
         for($i = 0; $i < count($users_id); ++$i){
-            $query = "CAST(question_id AS INTEGER)";
+            $query = "CAST(question_id AS SIGNED)";
             $user = Answer::where('user_id', $users_id[$i])->where('answer_type', '!=', 'no')->select('question_id', 'answer_type')->orderByRaw($query)->get()->toArray();
             $arrUser[$i] = [
                 'user_id' => $users_id[$i],
@@ -126,6 +126,7 @@ class AnswerController extends Controller
                     }
                 }
             }
+
             /*for($j = 0; $j < count($user); ++$j){
                 $arrUser[$i]['question_answer'][$j] = [
                     'question_id' => $user[$j]['question_id'],
@@ -138,7 +139,7 @@ class AnswerController extends Controller
 
     public function getAnswerByPage($page)
     {
-        $query = "CAST(user_id AS INTEGER)";
+        $query = "CAST(user_id AS SIGNED)";
         $num = (intval($page) - 1) * 100;
         if($num == 0){
             $users_id = User::where('role', 'user')->limit(100)->select('user_id')->orderByRaw($query)->pluck('user_id')->toArray();
@@ -147,10 +148,10 @@ class AnswerController extends Controller
             $users_id = User::where('role', 'user')->limit(100)->offset($num)->select('user_id')->orderByRaw($query)->pluck('user_id')->toArray();
         }
         $arrUser = [];
-        $query = "CAST(question_id AS INTEGER)";
+        $query = "CAST(question_id AS SIGNED)";
         $questions = Question::select('question_id')->orderByRaw($query)->pluck('question_id')->toArray();
         for($i = 0; $i < count($users_id); ++$i){
-            $query = "CAST(question_id AS INTEGER)";
+            $query = "CAST(question_id AS SIGNED)";
             $user = Answer::where('user_id', $users_id[$i])->where('answer_type', '!=', 'no')->select('question_id', 'answer_type')->orderByRaw($query)->get()->toArray();
             $arrUser[$i] = [
                 'user_id' => $users_id[$i],
