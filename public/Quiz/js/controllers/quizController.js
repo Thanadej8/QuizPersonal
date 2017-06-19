@@ -276,6 +276,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                         changeProbelm($scope.timeoutProblem[random].question_id);
                         $scope.resetClock();
                         $scope.startTimer();
+                        location.reload();
 
                     }
                 },
