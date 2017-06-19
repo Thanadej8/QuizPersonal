@@ -160,17 +160,13 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                     // eventFire(angular.element('choice1'), 'click');
                     // eventFire(angular.element('choice2'), 'click');
                     var a = $('#choice1')[0];
-                    a.style.backgroundColor = 'white';
-                    a.style.color = 'back';
-                    a.style.border = '1px solid back';
+                    a.setAttribute("style", "background-color: white; color: black; border: 1px solid black;");
                     var evObj = document.createEvent('MouseEvents');
                     evObj.initMouseEvent('click', true, true, window);
                     a.dispatchEvent(evObj);
                     a.removeAttribute("style")
                     var a2 = $('#choice2')[0];
-                    a2.style.backgroundColor = 'white';
-                    a2.style.color = 'back';
-                    a2.style.border = '1px solid back';
+                    a2.setAttribute("style", "background-color: white; color: black; border: 1px solid black;");
                     var evObj = document.createEvent('MouseEvents');
                     evObj.initMouseEvent('click', true, true, window);
                     a2.dispatchEvent(evObj);
