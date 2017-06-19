@@ -44,38 +44,38 @@ app.factory('Path_Api', function() {
     return {
         //image
 
-        path_image_analyst_Front : "image/NTP&NTJ&FRONT.png",
+        path_image_analyst_Front : "/QuizPersonal/public/Quiz/image/analyst_front.jpg",
         path_image_analysy_Front_url : "http://quiz-personal.herokuapp.com/Quiz/image/NTP&NTJ&FRONT.png",
 
-        path_image_analyst_Back : "image/NTP&NTJ&BACK.png",
+        path_image_analyst_Back : "/QuizPersonal/public/Quiz/image/analyst_back.jpg",
         path_image_analysy_Back_url : "http://quiz-personal.herokuapp.com/Quiz/image/NTP&NTJ&BACK.png",
 
-        path_image_diplomat_Front : "image/NFP&NFJ&FRONT.png",
+        path_image_diplomat_Front : "/QuizPersonal/public/Quiz/image/diplomat_front.jpg",
         path_image_diplomat_Front_url : "http://quiz-personal.herokuapp.com/Quiz/image/NFP&NFJ&FRONT.png",
 
-        path_image_diplomat_Back : "image/NFP&NFJ&BACK.png",
+        path_image_diplomat_Back : "/QuizPersonal/public/Quiz/image/diplomat_back.jpg",
         path_image_diplomat_Back_url : "http://quiz-personal.herokuapp.com/Quiz/image/NFP&NFJ&BACK.png",
 
-        path_image_sentinel_Front : "image/STJ&SFJ&FRONT.png",
+        path_image_sentinel_Front : "/QuizPersonal/public/Quiz/image/sentinel_front.jpg",
         path_image_sentinel_Front_url : "http://quiz-personal.herokuapp.com/Quiz/image/STJ&SFJ&FRONT.png",
 
-        path_image_sentinel_Back : "image/STJ&SFJ&BACK.png",
+        path_image_sentinel_Back : "/QuizPersonal/public/Quiz/image/sentinel_back.jpg",
         path_image_sentinel_Back_url : "http://quiz-personal.herokuapp.com/Quiz/image/STJ&SFJ&BACK.png",
 
-        path_image_explorer_Front : "image/STP&SFP&FRONT.png",
+        path_image_explorer_Front : "/QuizPersonal/public/Quiz/image/explorer_front.jpg",
         path_image_explorer_Front_url : "http://quiz-personal.herokuapp.com/Quiz/image/STP&SFP&FRONT.png",
 
-        path_image_explorer_Back : "image/STP&SFP&BACK.png",
+        path_image_explorer_Back : "/QuizPersonal/public/Quiz/image/explorer_back.jpg",
         path_image_explorer_Back_url : "http://quiz-personal.herokuapp.com/Quiz/image/STP&SFP&BACK.png",
 
-        api_login: "/QuizPersonal/api/user/login",
-        api_post_question : "/QuizPersonal/api/answer",
+        api_login: "/QuizPersonal/public/index.php/api/user/login",
+        api_post_question : "/QuizPersonal/public/index.php/api/answer",
         api_get_question : "/QuizPersonal/api/question/",
-        api_get_check_all_question : "/QuizPersonal/api/answer/after/",
-        api_get_all_user_admin : "/QuizPersonal/api/answer/get",
-        api_dowload_excal : "/QuizPersonal/api/ExportExcel",
-        api_get_one_user : "/QuizPersonal/api/user/",
-        api_get_user_admin : "/QuizPersonal/api/answer/get/"
+        api_get_check_all_question : "/QuizPersonal/public/index.php/api/answer/after/",
+        api_get_all_user_admin : "/QuizPersonal/public/index.php/api/answer/get",
+        api_dowload_excal : "/QuizPersonal/public/index.php/api/ExportExcel",
+        api_get_one_user : "/QuizPersonal/public/index.php/api/user/",
+        api_get_user_admin : "/QuizPersonal/public/index.php/api/answer/get/"
 
     };
 });
