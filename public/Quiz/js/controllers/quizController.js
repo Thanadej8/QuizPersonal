@@ -156,6 +156,19 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
 
                 $scope.problem = data;
 
+                setTimeout(function() {
+                    // eventFire(angular.element('choice1'), 'click');
+                    // eventFire(angular.element('choice2'), 'click');
+                    var a = $('#choice1')[0];
+                    var evObj = document.createEvent('MouseEvents');
+                    evObj.initMouseEvent('click', true, true, window);
+                    a.dispatchEvent(evObj);
+                    var a2 = $('#choice2')[0];
+                    var evObj = document.createEvent('MouseEvents');
+                    evObj.initMouseEvent('click', true, true, window);
+                    a2.dispatchEvent(evObj);
+                    
+                }, 1000);
                 console.log($scope.problem);
 
             },
@@ -163,6 +176,16 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                 // failure call back
             });
 
+    }
+
+    function eventFire(el, etype){
+        if (el.fireEvent) {
+            el.fireEvent('on' + etype);
+        } else {
+            var evObj = document.createEvent('Events');
+            evObj.initEvent(etype, true, false);
+            el.dispatchEvent(evObj);
+        }
     }
 
 
