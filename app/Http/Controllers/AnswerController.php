@@ -29,7 +29,7 @@ class AnswerController extends Controller
             Answer::where('user_id', $events['user_id'])->where('question_id', $events['problem_id'])->update(['answer_type' => $events['answer']]);
         }
         else{
-            Answer::create($arrData);
+            Answer::insert($arrData);
         }
         if($user->question_id !== '22') {
             $this->updateNewQuestion($events['problem_id'], $events['user_id']);

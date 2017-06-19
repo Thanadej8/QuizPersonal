@@ -17,3 +17,11 @@ Route::get('/', function () {
 
 Route::get('/getExcel','UserController@readExcel');
 Route::get('/ExportExcel','UserController@ExportExcel');
+
+Route::get('/index',function (){
+    return view('welcome');
+});
+
+Route::get('/index2',function (){
+    return "test";
+});
