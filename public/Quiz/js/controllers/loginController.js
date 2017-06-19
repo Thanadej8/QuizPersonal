@@ -21,7 +21,7 @@ app.controller('loginController',function($scope,$localStorage,$routeParams,$htt
                         $sessionStorage.user = data;
 
 
-                        if(data.role === null){
+                        if(data.role === "user"){
                             if(data.question_id === null){
                                 $sessionStorage.user.question_id = "1";
 
