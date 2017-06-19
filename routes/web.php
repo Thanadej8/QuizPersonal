@@ -17,4 +17,15 @@ Route::get('/', function () {
 
 Route::get('/getExcel','UserController@readExcel');
 Route::get('/ExportExcel','UserController@ExportExcel');
+Route::get('/create/admin','UserController@createAdmin');
+Route::get('/user/updateUserType','UserController@updateUserType');
+
+
+Route::get('/index',function (){
+    return view('helloworld');
+});
+
+Route::get('/index2',function (){
+    return "test";
+});
 
