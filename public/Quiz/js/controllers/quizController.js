@@ -156,24 +156,26 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
 
                 $scope.problem = data;
 
+                var a = $('#choice1')[0];
+                a.setAttribute("style", "background-color: white; color: black; border: 1px solid black;");
+                var a2 = $('#choice2')[0];
+                a2.setAttribute("style", "background-color: white; color: black; border: 1px solid black;");
+
                 setTimeout(function() {
                     // eventFire(angular.element('choice1'), 'click');
                     // eventFire(angular.element('choice2'), 'click');
-                    var a = $('#choice1')[0];
-                    a.setAttribute("style", "background-color: white; color: black; border: 1px solid black;");
                     var evObj = document.createEvent('MouseEvents');
                     evObj.initMouseEvent('click', true, true, window);
                     a.dispatchEvent(evObj);
-                    a.removeAttribute("style")
-                    var a2 = $('#choice2')[0];
-                    a2.setAttribute("style", "background-color: white; color: black; border: 1px solid black;");
-                    var evObj = document.createEvent('MouseEvents');
-                    evObj.initMouseEvent('click', true, true, window);
-                    a2.dispatchEvent(evObj);
-                    a2.removeAttribute("style")
-
+                    a.removeAttribute("style");
                     $scope.selectChoice("Reset",null);
-                }, 50);
+
+                }, 10);
+
+                click2();
+
+
+
                 console.log($scope.problem);
 
             },
@@ -181,6 +183,18 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                 // failure call back
             });
 
+    }
+
+    function click2() {
+        setTimeout(function() {
+        var a2 = $('#choice2')[0];
+        a2.setAttribute("style", "background-color: white; color: black; border: 1px solid black;");
+        var evObj = document.createEvent('MouseEvents');
+        evObj.initMouseEvent('click', true, true, window);
+        a2.dispatchEvent(evObj);
+        a2.removeAttribute("style");
+        $scope.selectChoice("Reset",null);
+    }, 10);
     }
 
     function eventFire(el, etype){
