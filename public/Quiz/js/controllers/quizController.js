@@ -127,11 +127,14 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
 
         problem.getData(id).then(
             function(response){
-                var data = response.data;
+                var data = parseStringtoHTML(response.data);
                 console.log(data);
-                $scope.problem = parseStringtoHTML(data);
+                $scope.problem = data;
                 console.log($scope.problem);
-                $scope.$applyAsync();
+                 $scope.$apply(function () {
+                     $scope.problem = data;
+                 });
+                console.log($scope.problem);
             },
             function(response){
                 // failure call back
