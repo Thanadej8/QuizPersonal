@@ -17,3 +17,4 @@ Route::get('/', function () {
 
 Route::get('/getExcel','UserController@readExcel');
 Route::get('/ExportExcel','UserController@ExportExcel');
+

@@ -6,10 +6,8 @@ use App\User;
 use Illuminate\Http\Request;
 use Excel;
 use Log;
-use app\Http\Controllers\AnswerController;
-use App\Answer;
 use App\Question;
-
+use App\Answer;
 class UserController extends Controller
 {
 
@@ -84,7 +82,7 @@ class UserController extends Controller
 
     public function readExcel()
     {
-        $path =  "D:\\xampp\\htdocs\\QuizPersonal\\public\\Userupdate.xlsx";
+        $path =  "D:\\xampp\\htdocs\\QuizPersonal\\public\\User.xlsx";
         $data = Excel::load($path, function ($reader){
         })->get();
 
@@ -104,18 +102,20 @@ class UserController extends Controller
         return 'finish';
     }
 
-    public function getAnswer()
+    public function getAnswerForExcel()
     {
-        $query = "CAST(user_id AS INTEGER)";
+        $query = "CAST(user_id AS SIGNED)";
         $users_id = User::where('role', 'user')->select('user_id')->orderByRaw($query)->pluck('user_id')->toArray();
         $arrUser = [];
-        $query = "CAST(question_id AS INTEGER)";
+        $query = "CAST(question_id AS SIGNED)";
         $questions = Question::select('question_id')->orderByRaw($query)->pluck('question_id')->toArray();
         for($i = 0; $i < count($users_id); ++$i){
-            $query = "CAST(question_id AS INTEGER)";
+            $query = "CAST(question_id AS SIGNED)";
             $user = Answer::where('user_id', $users_id[$i])->where('answer_type', '!=', 'no')->select('question_id', 'answer_type')->orderByRaw($query)->get()->toArray();
+			$username = User::where('user_id', $users_id[$i])->pluck('username');
             $arrUser[$i] = [
                 'user_id' => $users_id[$i],
+				'username' => $username,
             ];
             $arrUser[$i]['name'] = User::where('user_id', $users_id[$i])->pluck('name');
             $arrUser[$i]['person_type1'] = User::where('user_id', $users_id[$i])->pluck('person_type1')->toArray();
@@ -158,7 +158,7 @@ class UserController extends Controller
 
     public function ExportExcel(){
 
-       $answer =  $this->getAnswer();
+        $answer =  $this->getAnswerForExcel();
         /*if($answer[0]['person_type1'] == null){
             $answer[0]['person_type1'] = "";
             $answer[0]['person_type2'] = "";
@@ -168,7 +168,7 @@ class UserController extends Controller
 
         //return $person_type ;
 
-        $sheetArray[] = array('Name','ประเภทที่ 1 ข้อ1','ประเภทที่ 1 ข้อ2','ประเภทที่ 1 ข้อ3','ประเภทที่ 1 ข้อ4','ประเภทที่ 1 ข้อ5','ประเภทที่ 1 ข้อ6','ประเภทที่ 1 ข้อ7','ประเภทที่ 2 ข้อ1','ประเภทที่ 2 ข้อ2','ประเภทที่ 2 ข้อ3','ประเภทที่ 2 ข้อ4','ประเภทที่ 2 ข้อ5','ประเภทที่ 2 ข้อ6','ประเภทที่ 2 ข้อ7','ประเภทที่ 3 ข้อ1','ประเภทที่ 3 ข้อ2','ประเภทที่ 3 ข้อ3','ประเภทที่ 3 ข้อ4','ประเภทที่ 3 ข้อ5','ประเภทที่ 3 ข้อ6','ประเภทที่ 3 ข้อ7','สรุปเป็นประเภท     ');
+        $sheetArray[] = array('รหัสพนักงาน','ชื่อ','ประเภทที่ 1 ข้อ1','ประเภทที่ 1 ข้อ2','ประเภทที่ 1 ข้อ3','ประเภทที่ 1 ข้อ4','ประเภทที่ 1 ข้อ5','ประเภทที่ 1 ข้อ6','ประเภทที่ 1 ข้อ7','ประเภทที่ 2 ข้อ1','ประเภทที่ 2 ข้อ2','ประเภทที่ 2 ข้อ3','ประเภทที่ 2 ข้อ4','ประเภทที่ 2 ข้อ5','ประเภทที่ 2 ข้อ6','ประเภทที่ 2 ข้อ7','ประเภทที่ 3 ข้อ1','ประเภทที่ 3 ข้อ2','ประเภทที่ 3 ข้อ3','ประเภทที่ 3 ข้อ4','ประเภทที่ 3 ข้อ5','ประเภทที่ 3 ข้อ6','ประเภทที่ 3 ข้อ7','สรุปเป็นประเภท     ');
         //$Data = user::select('name', 'person_type1', 'person_type2', 'person_type3')->get();
 
         for($i = 0; $i < count($answer); ++$i){
@@ -181,15 +181,16 @@ class UserController extends Controller
                 $answer[$i]['person_type3'] = "";
             }
             $name = $answer[$i]['name'][0];
+			$username = $answer[$i]['username'][0];
             $ans1 = $answer[$i]['question_answer'][0]['answer_type'];
-            $sheetArray[] = [$name,$answer[$i]['question_answer'][0]['answer_type'],$answer[$i]['question_answer'][1]['answer_type'],$answer[$i]['question_answer'][2]['answer_type']
-            ,$answer[$i]['question_answer'][3]['answer_type'],$answer[$i]['question_answer'][4]['answer_type'],$answer[$i]['question_answer'][5]['answer_type']
-            ,$answer[$i]['question_answer'][6]['answer_type'],$answer[$i]['question_answer'][7]['answer_type'],$answer[$i]['question_answer'][8]['answer_type']
-            ,$answer[$i]['question_answer'][9]['answer_type'],$answer[$i]['question_answer'][10]['answer_type'],$answer[$i]['question_answer'][11]['answer_type']
-            ,$answer[$i]['question_answer'][12]['answer_type'],$answer[$i]['question_answer'][13]['answer_type'],$answer[$i]['question_answer'][14]['answer_type']
-            ,$answer[$i]['question_answer'][15]['answer_type'],$answer[$i]['question_answer'][16]['answer_type'],$answer[$i]['question_answer'][17]['answer_type']
-            ,$answer[$i]['question_answer'][18]['answer_type'],$answer[$i]['question_answer'][19]['answer_type'],$answer[$i]['question_answer'][20]['answer_type']
-            ,$person_type];
+            $sheetArray[] = [$username,$name,$answer[$i]['question_answer'][0]['answer_type'],$answer[$i]['question_answer'][1]['answer_type'],$answer[$i]['question_answer'][2]['answer_type']
+                ,$answer[$i]['question_answer'][3]['answer_type'],$answer[$i]['question_answer'][4]['answer_type'],$answer[$i]['question_answer'][5]['answer_type']
+                ,$answer[$i]['question_answer'][6]['answer_type'],$answer[$i]['question_answer'][7]['answer_type'],$answer[$i]['question_answer'][8]['answer_type']
+                ,$answer[$i]['question_answer'][9]['answer_type'],$answer[$i]['question_answer'][10]['answer_type'],$answer[$i]['question_answer'][11]['answer_type']
+                ,$answer[$i]['question_answer'][12]['answer_type'],$answer[$i]['question_answer'][13]['answer_type'],$answer[$i]['question_answer'][14]['answer_type']
+                ,$answer[$i]['question_answer'][15]['answer_type'],$answer[$i]['question_answer'][16]['answer_type'],$answer[$i]['question_answer'][17]['answer_type']
+                ,$answer[$i]['question_answer'][18]['answer_type'],$answer[$i]['question_answer'][19]['answer_type'],$answer[$i]['question_answer'][20]['answer_type']
+                ,$person_type];
             //return $sheetArray;
         }
         //return $sheetArray;
@@ -197,7 +198,7 @@ class UserController extends Controller
             $excel->sheet('Sheet1', function($sheet) use($sheetArray) {
                 $sheet->fromArray($sheetArray);
             });
-        })->export('xlsx');
+        })->export('xls');
 
         return 'finish';
     }
