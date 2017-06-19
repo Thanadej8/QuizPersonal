@@ -168,7 +168,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                     evObj.initMouseEvent('click', true, true, window);
                     a2.dispatchEvent(evObj);
                     $scope.selectChoice("Reset",null);
-                }, 500);
+                }, 50);
                 console.log($scope.problem);
 
             },
