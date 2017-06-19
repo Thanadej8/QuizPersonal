@@ -43,11 +43,18 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                 console.log(data);
                 $sessionStorage.user = data[0];
                 if($scope.isReload){
-                    if($sessionStorage.user.question_id !== "22"){
-                        console.log($sessionStorage.user);
-                        $scope.isReload = false;
+                    if($sessionStorage.user.question_id!== null){
+                        if($sessionStorage.user.question_id !== "22" ){
+                            console.log($sessionStorage.user);
+                            $scope.isReload = false;
+                            getProblem($sessionStorage.user.question_id);
+                        }
+                    }else{
+                        $sessionStorage.user.question_id = "1";
                         getProblem($sessionStorage.user.question_id);
                     }
+
+
 
 
                 }
@@ -58,7 +65,6 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
             });
 
     }
-
 
 
     //timer
@@ -147,11 +153,9 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
             function(response){
                 var data = parseStringtoHTML(response.data);
                 console.log(data);
+
                 $scope.problem = data;
                 console.log($scope.problem);
-
-
-
 
             },
             function(response){
@@ -166,6 +170,8 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
         return data;
     }
 
+
+
     $scope.selectChoice = function (choice,type_choice) {
 
 
@@ -179,6 +185,9 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
         }else if(choice === "Reset"){
             $scope.isLoadingChoice1 = false;
             $scope.isLoadingChoice2 = false;
+        }else if (choice === "update"){
+            $scope.isLoadingChoice2 = true;
+            $scope.isLoadingChoice1 = true;
         }
 
         if(type_choice !== null){
@@ -223,8 +232,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                         changeProbelm(data.question_id);
                         $scope.resetClock();
                         $scope.startTimer();
-                        document.getElementById("choice1").checked = false;
-                        document.getElementById("choice2").checked = false;
+                        location.reload();
 
                     }
 
@@ -268,8 +276,7 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                         changeProbelm($scope.timeoutProblem[random].question_id);
                         $scope.resetClock();
                         $scope.startTimer();
-                        document.getElementById("choice1").checked = false;
-                        document.getElementById("choice2").checked = false;
+
                     }
                 },
                 function(response){

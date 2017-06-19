@@ -68,14 +68,14 @@ app.factory('Path_Api', function() {
         path_image_explorer_Back : "/Quiz/image/explorer_back.jpg",
         path_image_explorer_Back_url : "http://test.cds-unlockupower.com/Quiz/image/explorer_back",
 
-        api_login: "/index.php/api/user/login",
-        api_post_question : "/index.php/api/answer",
-        api_get_question : "/index.php/api/question/",
-        api_get_check_all_question : "/index.php/api/answer/after/",
-        api_get_all_user_admin : "/index.php/api/answer/get",
-        api_dowload_excal : "/index.php/api/ExportExcel",
-        api_get_one_user : "/index.php/api/user/",
-        api_get_user_admin : "/index.php/api/answer/get/"
+        api_login: "/api/user/login",
+        api_post_question : "/api/answer",
+        api_get_question : "/api/question/",
+        api_get_check_all_question : "/api/answer/after/",
+        api_get_all_user_admin : "/api/answer/get",
+        api_dowload_excal : "/api/ExportExcel",
+        api_get_one_user : "/api/user/",
+        api_get_user_admin : "/api/answer/get/"
 
     };
 });
