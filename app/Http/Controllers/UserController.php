@@ -112,10 +112,10 @@ class UserController extends Controller
         for($i = 0; $i < count($users_id); ++$i){
             $query = "CAST(question_id AS SIGNED)";
             $user = Answer::where('user_id', $users_id[$i])->where('answer_type', '!=', 'no')->select('question_id', 'answer_type')->orderByRaw($query)->get()->toArray();
-			$username = User::where('user_id', $users_id[$i])->pluck('username');
+            $username = User::where('user_id', $users_id[$i])->pluck('username');
             $arrUser[$i] = [
                 'user_id' => $users_id[$i],
-				'username' => $username,
+                'username' => $username,
             ];
             $arrUser[$i]['name'] = User::where('user_id', $users_id[$i])->pluck('name');
             $arrUser[$i]['person_type1'] = User::where('user_id', $users_id[$i])->pluck('person_type1')->toArray();
@@ -181,7 +181,7 @@ class UserController extends Controller
                 $answer[$i]['person_type3'] = "";
             }
             $name = $answer[$i]['name'][0];
-			$username = $answer[$i]['username'][0];
+            $username = $answer[$i]['username'][0];
             $ans1 = $answer[$i]['question_answer'][0]['answer_type'];
             $sheetArray[] = [$username,$name,$answer[$i]['question_answer'][0]['answer_type'],$answer[$i]['question_answer'][1]['answer_type'],$answer[$i]['question_answer'][2]['answer_type']
                 ,$answer[$i]['question_answer'][3]['answer_type'],$answer[$i]['question_answer'][4]['answer_type'],$answer[$i]['question_answer'][5]['answer_type']
@@ -201,6 +201,18 @@ class UserController extends Controller
         })->export('xls');
 
         return 'finish';
+    }
+
+    public function createAdmin(){
+        User::insert([
+            'name' => 'admin',
+            'username' => 'admin',
+            'role' => 'admin',
+        ]);
+    }
+
+    public function updateUserType(){
+        User::where('role', null)->update(['role' => 'user']);
     }
 
 }
