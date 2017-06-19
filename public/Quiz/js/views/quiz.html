@@ -20,21 +20,16 @@
                         </p>
                         <hr>
 
-                        <div class="col-md-12" style="margin-bottom: 10px">
-                            <strong>ข้อ1.</strong> <p ng-bind-html='problem.choice1'></p>
-                        </div>
-                        <div class="col-md-12" style="margin-bottom: 10px">
-                            <strong>ข้อ2.</strong> <p ng-bind-html='problem.choice2'></p>
-                        </div>
+
 
                         <div class="col-md-12"style="margin-bottom: 10px">
                             <button role="button" name="choice1" class="btn-choice" ng-disabled="isNextProblem" ng-class="isLoadingChoice1 ? 'active-choice': ''" ng-click="selectChoice(1,problem.choice1_type)" >
-                                <span ng-bind-html='problem.choice1'></span>
+                                <p style="text-align: left">1.<span ng-bind-html='problem.choice1'></span></p>
                             </button>
                         </div>
                         <div class="col-md-12"style="margin-bottom: 10px">
                             <button role="button" name="choice2" class="btn-choice" ng-disabled="isNextProblem" ng-class="isLoadingChoice2 ? 'active-choice': ''" ng-click="selectChoice(2,problem.choice2_type)" >
-                                <span ng-bind-html='problem.choice2'></span>
+                                <p style="text-align: left">2.<span ng-bind-html='problem.choice2'></span></p>
                             </button>
                         </div>
                         <div class="col-md-12 ">
