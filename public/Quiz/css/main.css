@@ -179,13 +179,16 @@ table tbody tr td {
     text-align: center;
 }
 .btn-choice{
-    margin: 10px;
+    margin: 5px 0 5px 0;
     border: 1px solid black;
     width: 100%;
     background-color: white;
     color: black;
-    padding: 10px 15px;
+    padding: 10px ;
     outline: none;
+    display: block;
+    text-decoration: none;
+    text-align: left;
 }
 .btn-choice span{
     text-align: left;
@@ -195,6 +198,7 @@ table tbody tr td {
     color: white;
     border: 1px solid white;
     outline: none;
+    text-decoration: none;
 }
 .navbar-default{
     background-image: none;
@@ -216,3 +220,8 @@ img.bg {
     top: 0;
     left: 0;
 }
+
+
+
+
+

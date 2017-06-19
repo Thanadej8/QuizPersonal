@@ -18,49 +18,32 @@
                         <p class="lead" ng-bind-html="problem.question_name">
 
                         </p>
-                        <br>
-                        <br>
-                        <p><span ng-bind-html='problem.choice1'></span></p>
-                        <br>
-                        <p><span ng-bind-html='problem.choice2'></span></p>
-                    </div>
+                        <hr>
 
-                    <div class="footer-problem">
-                        <div class="row">
+                        <div class="col-md-12">
+                            <button role="button"  class="btn-choice" ng-disabled="isNextProblem" ng-class="isLoadingChoice1 ? 'active-choice': ''" ng-click="selectChoice(1,problem.choice1_type)" >
 
-                            <div class="col-md-12 ">
+                                1. <span ng-bind-html='problem.choice1'></span>
+                            </button>
+                        </div>
+                        <div class="col-md-12">
+                            <button role="button" class="btn-choice" ng-disabled="isNextProblem" ng-class="isLoadingChoice2 ? 'active-choice': ''" ng-click="selectChoice(2,problem.choice2_type)" >
 
-                                <button class="btn-choice" ng-disabled="isNextProblem" ng-class="isLoadingChoice1 ? 'active-choice': ''" ng-click="selectChoice(1,problem.choice1_type)" >
-                                    <p style="text-align: left">
-                                        <span >1.</span>
-                                        <span ng-bind-html='problem.choice1'></span>
-                                    </p>
-                                    <!-- <span>1.{{problem.choice1}}</span>-->
-                                 </button>
-                             </div>
-                             <div class="col-md-12 ">
-                                <!--newcommit-->
-                                 <button class="btn-choice" ng-disabled="isNextProblem" ng-class="isLoadingChoice2 ? 'active-choice': ''" ng-click="selectChoice(2,problem.choice2_type)">
-                                     <p style="text-align: left">
-                                         <span>2.</span>
-                                         <span ng-bind-html='problem.choice2'></span>
-                                     </p>
+                                2. <span ng-bind-html='problem.choice2'></span>
 
-
-                                     <!--<span>2.{{problem.choice2}}</span>-->
-                                </button>
-
-                            </div>
-                            <div class="col-md-12 ">
-                                <button style="display: block;margin:  auto;padding: 10px 15px;" class="btn btn-warning" ng-click="nextProblem()" ng-disabled="isLoadingChoice1 === false && isLoadingChoice2 == false || isNextProblem == true" ng-class="isNextProblem ? 'active': ''">
-                                    <span ng-show="isNextProblem === true"><i class="fa fa-spinner fa-spin fa-fw"></i></span>
-                                    <span ng-show="isNextProblem === false">ถัดไป</span>
-                                </button>
-                            </div>
-
+                                <!--<span>2.{{problem.choice2}}</span>-->
+                            </button>
+                        </div>
+                        <div class="col-md-12 ">
+                            <button style="display: block;margin:10px auto;padding: 10px 15px;" class="btn btn-warning" ng-click="nextProblem()" ng-disabled="isLoadingChoice1 === false && isLoadingChoice2 == false || isNextProblem == true" ng-class="isNextProblem ? 'active': ''">
+                                <span ng-show="isNextProblem === true"><i class="fa fa-spinner fa-spin fa-fw"></i></span>
+                                <span ng-show="isNextProblem === false">ถัดไป</span>
+                            </button>
                         </div>
 
                     </div>
+
+
                 </div>
             </div>
         </div>

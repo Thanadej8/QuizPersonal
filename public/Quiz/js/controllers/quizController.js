@@ -19,6 +19,14 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
     $scope.isReload = false;
 
 
+    $scope.color = {
+        name: 'blue'
+    };
+    $scope.specialValue = {
+        "id": "12345",
+        "value": "green"
+    };
+
 
     $window.onpopstate = function () {
         getUeser($sessionStorage.user.user_id);
@@ -167,7 +175,6 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
 
 
         if(choice === 1){
-
             $scope.isLoadingChoice1 = true;
             $scope.isLoadingChoice2 = false;
         }
@@ -252,7 +259,8 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                         changeProbelm($scope.timeoutProblem[0].question_id);
                         $scope.resetClock();
                         $scope.startTimer();
-
+                        document.getElementById("choice1").checked = false;
+                        document.getElementById("choice2").checked = false;
                     }
                 },
                 function(response){
