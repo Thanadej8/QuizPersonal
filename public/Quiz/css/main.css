@@ -189,6 +189,7 @@ table tbody tr td {
     display: block;
     text-decoration: none;
     text-align: left;
+
 }
 .btn-choice span{
     text-align: left;
@@ -223,5 +224,8 @@ img.bg {
 
 
 
-
+*{
+    box-sizing: border-box;
+    
+}
 

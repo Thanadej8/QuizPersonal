@@ -1,6 +1,7 @@
 
 app.controller('quizController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,problem,$window,Path_Api,$uibModal,$log,getOneUser,$sessionStorage,$sce) {
     $scope.user = $sessionStorage.user;
+    $sessionStorage.question_id_random;
     console.log($sessionStorage.user);
     $scope.isLoadingChoice1 = false;
     $scope.isLoadingChoice2 = false;
@@ -17,15 +18,6 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
         $location.path(path);
     }
     $scope.isReload = false;
-
-
-    $scope.color = {
-        name: 'blue'
-    };
-    $scope.specialValue = {
-        "id": "12345",
-        "value": "green"
-    };
 
 
     $window.onpopstate = function () {
@@ -158,6 +150,9 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                 $scope.problem = data;
                 console.log($scope.problem);
 
+
+
+
             },
             function(response){
                 // failure call back
@@ -228,6 +223,8 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                         changeProbelm(data.question_id);
                         $scope.resetClock();
                         $scope.startTimer();
+                        document.getElementById("choice1").checked = false;
+                        document.getElementById("choice2").checked = false;
 
                     }
 
@@ -249,14 +246,26 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
                     var data = response.data;
 
                     $scope.timeoutProblem = data;
-
+                    console.log(data);
                     console.log($scope.timeoutProblem);
                     if($scope.timeoutProblem.length === 0){
                         $location.path('/showtypeperson');
                     }else{
+                        var max = $scope.timeoutProblem.length;
+                        for(;;){
+                            var random = parseInt(Math.random() * (max - 0) + 0);
+                            console.log(random);
+                            if($sessionStorage.question_id_random !== random){
+                                $sessionStorage.question_id_random = random;
+                                break;
+                            }else if($scope.timeoutProblem.length === 1){
+                                break;
+                            }
+                        }
+
                         $scope.isNextProblem = false;
                         $scope.selectChoice("Reset",null);
-                        changeProbelm($scope.timeoutProblem[0].question_id);
+                        changeProbelm($scope.timeoutProblem[random].question_id);
                         $scope.resetClock();
                         $scope.startTimer();
                         document.getElementById("choice1").checked = false;
