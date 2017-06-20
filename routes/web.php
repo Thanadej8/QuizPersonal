@@ -20,6 +20,7 @@ Route::get('/ExportExcel','UserController@ExportExcel');
 Route::get('/create/admin','UserController@createAdmin');
 Route::get('/user/updateUserType','UserController@updateUserType');
 Route::get('/user/createTestUser', 'UserController@createTestUser');
+Route::get('/user/createTestUser2', 'UserController@createTestUser2');
 
 
 Route::get('/index',function (){

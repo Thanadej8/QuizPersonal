@@ -289,4 +289,91 @@ class UserController extends Controller
 
     }
 
+    public function createTestUser2()
+    {
+        User::insert([
+            'name' => 'test11',
+            'username' => 'test11',
+            'job' => 'Front',
+            'role' => 'user',
+        ]);
+
+        User::insert([
+            'name' => 'test12',
+            'username' => 'test12',
+            'job' => 'Front',
+            'role' => 'user',
+        ]);
+
+        User::insert([
+            'name' => 'test13',
+            'username' => 'test13',
+            'job' => 'Front',
+            'role' => 'user',
+        ]);
+
+        User::insert([
+            'name' => 'test14',
+            'username' => 'test14',
+            'job' => 'Front',
+            'role' => 'user',
+        ]);
+
+        User::insert([
+            'name' => 'test15',
+            'username' => 'test15',
+            'job' => 'Front',
+            'role' => 'user',
+        ]);
+
+        User::insert([
+            'name' => 'test16',
+            'username' => 'test16',
+            'job' => 'Back',
+            'role' => 'user',
+        ]);
+
+        User::insert([
+            'name' => 'test17',
+            'username' => 'test17',
+            'job' => 'Back',
+            'role' => 'user',
+        ]);
+
+        User::insert([
+            'name' => 'test18',
+            'username' => 'test18',
+            'job' => 'Back',
+            'role' => 'user',
+        ]);
+
+        User::insert([
+            'name' => 'test19',
+            'username' => 'test19',
+            'job' => 'Back',
+            'role' => 'user',
+        ]);
+
+        User::insert([
+            'name' => 'test20',
+            'username' => 'test20',
+            'job' => 'Back',
+            'role' => 'user',
+        ]);
+
+    }
+
+    public function getCountFinishedUser()
+    {
+        $finished_user = User::whereNotNull('person_type1')->where('role', 'user')
+            ->where('username','NOT LIKE', '%test%')->count();
+        $not_finish_user = User::whereNull('person_type1')->where('role', 'user')
+            ->where('username','NOT LIKE', '%test%')->count();
+        $user = [
+            'finish' => $finished_user,
+            'not_finish' => $not_finish_user,
+        ];
+        return $user;
+    }
+
 }
