@@ -25,7 +25,7 @@ app.controller('adminController',function($scope,$localStorage,$routeParams,$htt
         PersonDoQuiz.getData().then(
             function(response){
                 var data = response.data;
-
+                console.log(data);
                 data.all_user = data.all_user -1;
                 $scope.totelPerson = data;
                 console.log($scope.totelPerson);
