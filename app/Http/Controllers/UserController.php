@@ -370,10 +370,16 @@ class UserController extends Controller
 
         $user_id = User::whereNull('person_type1')->where('role', 'user')
             ->where('username','NOT LIKE', '%test%')->pluck('user_id');
+
         $not_finish_user = Answer::where('user_id', $user_id)->where('answer_type', '!=', 'no')->select('user_id')->distinct()->count();
+
+        $all_user = User::where('role', 'user')
+            ->where('username','NOT LIKE', '%test%')->count();
+
         $user = [
             'finish' => $finished_user,
             'not_finish' => $not_finish_user,
+            'all_user' => $all_user,
         ];
         return $user;
     }
