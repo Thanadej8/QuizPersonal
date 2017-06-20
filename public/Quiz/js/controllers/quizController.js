@@ -156,28 +156,6 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
 
                 $scope.problem = data;
 
-                var a = $('#choice1')[0];
-                a.setAttribute("style", "background-color: white; color: black; border: 1px solid black;");
-                var a2 = $('#choice2')[0];
-                a2.setAttribute("style", "background-color: white; color: black; border: 1px solid black;");
-
-                setTimeout(function() {
-                    // eventFire(angular.element('choice1'), 'click');
-                    // eventFire(angular.element('choice2'), 'click');
-                    var evObj = document.createEvent('MouseEvents');
-                    evObj.initMouseEvent('click', true, true, window);
-                    a.dispatchEvent(evObj);
-                    a.removeAttribute("style");
-                    
-                    click2();
-                    $scope.selectChoice("Reset",null);
-
-                }, 1);
-
-
-
-
-
                 console.log($scope.problem);
 
             },
@@ -186,6 +164,15 @@ app.controller('quizController',function($scope,$localStorage,$routeParams,$http
             });
 
     }
+
+
+    $scope.$watch(function () { return $scope.problem; }, function (newData, oldData) {
+
+
+
+        $scope.problem = newData;
+        $scope.$applyAsync();
+    });
 
     function click2() {
         setTimeout(function() {

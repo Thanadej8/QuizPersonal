@@ -28,17 +28,20 @@
                             </div>
 
                         </div>-->
-
+                    <br>
+                        <p>{{problem.choice1}}</p>
+                        <br>
+                        <p>{{problem.choice2}}</p>
                     </div>
                     <div class="footer-problem">
                         <div class="row">
-                            <div class="col-md-12">
-                                <button   name="choice1" id="choice1" class="btn-choice" ng-disabled="isNextProblem" ng-class="isLoadingChoice1 ? 'active-choice': ''" ng-click="selectChoice(1,problem.choice1_type)" >
+                            <div style="margin: 10px">
+                                <button   name="choice1" id="choice1" class="btn-choice" ng-disabled="isNextProblem" ng-class="isLoadingChoice1 ? 'active-choice': ''"  ng-click="selectChoice(1,problem.choice1_type)" >
                                     1.{{problem.choice1}}
                                 </button>
                             </div>
-                            <div class="col-md-12">
-                                <button  name="choice2" id="choice2" class="btn-choice" ng-disabled="isNextProblem" ng-class="isLoadingChoice2 ? 'active-choice': ''" ng-click="selectChoice(2,problem.choice2_type)" >
+                            <div style="margin: 10px">
+                                <button  name="choice2" id="choice2" class="btn-choice" ng-disabled="isNextProblem" ng-class="isLoadingChoice2 ? 'active-choice': ''"  ng-click="selectChoice(2,problem.choice2_type)" >
                                     2.{{problem.choice2}}
                                 </button>
                             </div>
