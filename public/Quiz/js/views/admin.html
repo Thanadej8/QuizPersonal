@@ -4,8 +4,12 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-all">
-                    <h3 style="text-align: center">ตารางผู้ใช้ตอบคำถาม</h3>
-
+                    <h3 style="text-align: center;">ตารางผู้ใช้ตอบคำถาม</h3>
+                    <h4 style="text-align: center;margin-top: 20px">
+                        <span class="success" style="color: #00aa98;margin-right: 10px">คนที่ทำเสร็จ : {{totelPerson.finish}}</span>
+                        /
+                        <span style="color:red;margin-left: 10px">คนที่ทำยังไม่เสร็จ : {{totelPerson.not_finish}}</span>
+                    </h4>
                     <a role="button" class="btn btn-success"  style="margin: 15px auto;display: block"  href="/api/ExportExcel">โหลดไฟล์ Excel ข้อมูลตารางนี้</a>
 
                     <pre>Page: {{bigCurrentPage}} / {{totalItems}}</pre>
