@@ -215,4 +215,78 @@ class UserController extends Controller
         User::where('role', null)->update(['role' => 'user']);
     }
 
+    public function createTestUser()
+    {
+        User::insert([
+            'name' => 'test1',
+            'username' => 'test1',
+            'job' => 'Front',
+            'role' => 'user',
+        ]);
+
+        User::insert([
+            'name' => 'test2',
+            'username' => 'test2',
+            'job' => 'Front',
+            'role' => 'user',
+        ]);
+
+        User::insert([
+            'name' => 'test3',
+            'username' => 'test3',
+            'job' => 'Front',
+            'role' => 'user',
+        ]);
+
+        User::insert([
+            'name' => 'test4',
+            'username' => 'test4',
+            'job' => 'Front',
+            'role' => 'user',
+        ]);
+
+        User::insert([
+            'name' => 'test5',
+            'username' => 'test5',
+            'job' => 'Front',
+            'role' => 'user',
+        ]);
+
+        User::insert([
+            'name' => 'test6',
+            'username' => 'test6',
+            'job' => 'Back',
+            'role' => 'user',
+        ]);
+
+        User::insert([
+            'name' => 'test7',
+            'username' => 'test7',
+            'job' => 'Back',
+            'role' => 'user',
+        ]);
+
+        User::insert([
+            'name' => 'test8',
+            'username' => 'test8',
+            'job' => 'Back',
+            'role' => 'user',
+        ]);
+
+        User::insert([
+            'name' => 'test9',
+            'username' => 'test9',
+            'job' => 'Back',
+            'role' => 'user',
+        ]);
+
+        User::insert([
+            'name' => 'test10',
+            'username' => 'test10',
+            'job' => 'Back',
+            'role' => 'user',
+        ]);
+
+    }
+
 }
