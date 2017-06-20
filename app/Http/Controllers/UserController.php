@@ -105,7 +105,7 @@ class UserController extends Controller
     public function getAnswerForExcel()
     {
         $query = "CAST(user_id AS SIGNED)";
-        $users_id = User::where('role', 'user')->select('user_id')->orderByRaw($query)->pluck('user_id')->toArray();
+        $users_id = User::where('role', 'user')->where('username','NOT LIKE', '%test%')->select('user_id')->orderByRaw($query)->pluck('user_id')->toArray();
         $arrUser = [];
         $query = "CAST(question_id AS SIGNED)";
         $questions = Question::select('question_id')->orderByRaw($query)->pluck('question_id')->toArray();
@@ -373,8 +373,7 @@ class UserController extends Controller
         $not_finish_user = User::whereNull('person_type1')->where('role', 'user')
             ->where('username','NOT LIKE', '%test%')->whereIn('user_id', $user_id)->count();
 
-        $all_user = User::where('role', 'user')
-            ->where('username','NOT LIKE', '%test%')->count();
+        $all_user = User::where('role', 'user')->where('username','NOT LIKE', '%test%')->count();
 
         $user = [
             'finish' => $finished_user,
