@@ -1,5 +1,5 @@
 
-app.controller('adminController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,$uibModal,$log,allUser,Path_Api,getOneUser,$sessionStorage,getUserAdmin) {
+app.controller('adminController',function($scope,$localStorage,$routeParams,$http,$location,$rootScope,$uibModal,$log,allUser,Path_Api,getOneUser,$sessionStorage,getUserAdmin,PersonDoQuiz) {
 
     $scope.user = $sessionStorage.user;
 
@@ -21,7 +21,20 @@ app.controller('adminController',function($scope,$localStorage,$routeParams,$htt
                 // failure call back
             });
     }
+    function getPersonDoQuiz() {
+        PersonDoQuiz.getData().then(
+            function(response){
+                var data = response.data;
+                console.log(data);
+                $scope.totelPerson = data;
 
+
+
+            },
+            function(response){
+                // failure call back
+            });
+    }
 
     $scope.getAllUser = function() {
 
@@ -100,6 +113,7 @@ app.controller('adminController',function($scope,$localStorage,$routeParams,$htt
 
 
     if($sessionStorage.user !== undefined){
+        getPersonDoQuiz();
         getUserPage(1);
 
     }else{

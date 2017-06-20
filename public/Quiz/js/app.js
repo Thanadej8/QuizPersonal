@@ -75,7 +75,7 @@ app.factory('Path_Api', function() {
         api_get_all_user_admin : "/index.php/api/answer/get",
         api_dowload_excal : "/index.php/api/ExportExcel",
         api_get_one_user : "/index.php/api/user/",
-        api_get_user_admin : "/index.php/api/answer/get/"
-
+        api_get_user_admin : "/index.php/api/answer/get/",
+        api_get_person_do_quiz : "/index.php/api/user/get/count"
     };
 });
