@@ -8,7 +8,9 @@
                     <h4 style="text-align: center;margin-top: 20px">
                         <span class="success" style="color: #00aa98;margin-right: 10px">คนที่ทำเสร็จ : {{totelPerson.finish}}</span>
                         /
-                        <span style="color:red;margin-left: 10px">คนที่ทำยังไม่เสร็จ : {{totelPerson.not_finish}}</span>
+                        <span style="color:red;margin-left: 10px">คนที่ทำแล้วแต่ยังไม่เสร็จ : {{totelPerson.not_finish}}</span>
+                        /
+                        <span style="color:red;margin-left: 10px">คนที่ยังไม่ได้ทำ : {{totelPerson.all_user - totelPerson.not_finish - totelPerson.finish}}</span>
                     </h4>
                     <a role="button" class="btn btn-success"  style="margin: 15px auto;display: block"  href="/api/ExportExcel">โหลดไฟล์ Excel ข้อมูลตารางนี้</a>
 
