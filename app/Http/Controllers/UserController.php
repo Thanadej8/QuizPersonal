@@ -105,11 +105,11 @@ class UserController extends Controller
     public function getAnswerForExcel()
     {
         $query = "CAST(user_id AS SIGNED)";
-        $users_id = User::where('role', 'user')->where('username','NOT LIKE', '%test%')->select('user_id')->orderByRaw($query)->pluck('user_id')->toArray();
+        $users_id = User::where('role', 'user')->where('username','NOT LIKE', '%test%')->limit(2000)->select('user_id')->orderByRaw($query)->pluck('user_id')->toArray();
         $arrUser = [];
         $query = "CAST(question_id AS SIGNED)";
         $questions = Question::select('question_id')->orderByRaw($query)->pluck('question_id')->toArray();
-        for($i = 0; $i < 2000; ++$i){
+        for($i = 0; $i < count($users_id); ++$i){
             $query = "CAST(question_id AS SIGNED)";
             $user = Answer::where('user_id', $users_id[$i])->where('answer_type', '!=', 'no')->select('question_id', 'answer_type')->orderByRaw($query)->get()->toArray();
             $username = User::where('user_id', $users_id[$i])->pluck('username');
@@ -159,11 +159,11 @@ class UserController extends Controller
     public function getAnswerForExcel2()
     {
         $query = "CAST(user_id AS SIGNED)";
-        $users_id = User::where('role', 'user')->where('username','NOT LIKE', '%test%')->select('user_id')->orderByRaw($query)->pluck('user_id')->toArray();
+        $users_id = User::where('role', 'user')->where('username','NOT LIKE', '%test%')->limit(2000)->offset(2000)->select('user_id')->orderByRaw($query)->pluck('user_id')->toArray();
         $arrUser = [];
         $query = "CAST(question_id AS SIGNED)";
         $questions = Question::select('question_id')->orderByRaw($query)->pluck('question_id')->toArray();
-        for($i = 2000; $i < 4000; ++$i){
+        for($i = 0; $i < count($users_id); ++$i){
             $query = "CAST(question_id AS SIGNED)";
             $user = Answer::where('user_id', $users_id[$i])->where('answer_type', '!=', 'no')->select('question_id', 'answer_type')->orderByRaw($query)->get()->toArray();
             $username = User::where('user_id', $users_id[$i])->pluck('username');
@@ -213,11 +213,11 @@ class UserController extends Controller
     public function getAnswerForExcel3()
     {
         $query = "CAST(user_id AS SIGNED)";
-        $users_id = User::where('role', 'user')->where('username','NOT LIKE', '%test%')->select('user_id')->orderByRaw($query)->pluck('user_id')->toArray();
+        $users_id = User::where('role', 'user')->where('username','NOT LIKE', '%test%')->limit(3000)->offset(4000)->select('user_id')->orderByRaw($query)->pluck('user_id')->toArray();
         $arrUser = [];
         $query = "CAST(question_id AS SIGNED)";
         $questions = Question::select('question_id')->orderByRaw($query)->pluck('question_id')->toArray();
-        for($i = 4000; $i < count($users_id); ++$i){
+        for($i = 0; $i < count($users_id); ++$i){
             $query = "CAST(question_id AS SIGNED)";
             $user = Answer::where('user_id', $users_id[$i])->where('answer_type', '!=', 'no')->select('question_id', 'answer_type')->orderByRaw($query)->get()->toArray();
             $username = User::where('user_id', $users_id[$i])->pluck('username');
