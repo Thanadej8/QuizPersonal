@@ -109,7 +109,115 @@ class UserController extends Controller
         $arrUser = [];
         $query = "CAST(question_id AS SIGNED)";
         $questions = Question::select('question_id')->orderByRaw($query)->pluck('question_id')->toArray();
-        for($i = 0; $i < count($users_id); ++$i){
+        for($i = 0; $i < 2000; ++$i){
+            $query = "CAST(question_id AS SIGNED)";
+            $user = Answer::where('user_id', $users_id[$i])->where('answer_type', '!=', 'no')->select('question_id', 'answer_type')->orderByRaw($query)->get()->toArray();
+            $username = User::where('user_id', $users_id[$i])->pluck('username');
+            $arrUser[$i] = [
+                'user_id' => $users_id[$i],
+                'username' => $username,
+            ];
+            $arrUser[$i]['name'] = User::where('user_id', $users_id[$i])->pluck('name');
+            $arrUser[$i]['person_type1'] = User::where('user_id', $users_id[$i])->pluck('person_type1')->toArray();
+            $arrUser[$i]['person_type2'] = User::where('user_id', $users_id[$i])->pluck('person_type2')->toArray();
+            $arrUser[$i]['person_type3'] = User::where('user_id', $users_id[$i])->pluck('person_type3')->toArray();
+            if($user == null){
+                for($k = 0; $k < count($questions); ++$k){
+                    $arrUser[$i]['question_answer'][$k] = [
+                        'question_id' => $questions[$k],
+                        'answer_type' => '',
+                    ];
+                }
+            }
+            else{
+                for($k = 0, $j = 0; $k < count($questions); ++$k){
+                    if($j != count($user) && $questions[$k] == $user[$j]['question_id']){
+                        $arrUser[$i]['question_answer'][$k] = [
+                            'question_id' => $user[$j]['question_id'],
+                            'answer_type' => $user[$j]['answer_type'],
+                        ];
+                        ++$j;
+                    }
+                    else{
+                        $arrUser[$i]['question_answer'][$k] = [
+                            'question_id' => $questions[$k],
+                            'answer_type' => '',
+                        ];
+                    }
+                }
+            }
+            /*for($j = 0; $j < count($user); ++$j){
+                $arrUser[$i]['question_answer'][$j] = [
+                    'question_id' => $user[$j]['question_id'],
+                    'answer_type' => $user[$j]['answer_type'],
+                ];
+            }*/
+        }
+        return $arrUser;
+    }
+
+    public function getAnswerForExcel2()
+    {
+        $query = "CAST(user_id AS SIGNED)";
+        $users_id = User::where('role', 'user')->where('username','NOT LIKE', '%test%')->select('user_id')->orderByRaw($query)->pluck('user_id')->toArray();
+        $arrUser = [];
+        $query = "CAST(question_id AS SIGNED)";
+        $questions = Question::select('question_id')->orderByRaw($query)->pluck('question_id')->toArray();
+        for($i = 2000; $i < 4000; ++$i){
+            $query = "CAST(question_id AS SIGNED)";
+            $user = Answer::where('user_id', $users_id[$i])->where('answer_type', '!=', 'no')->select('question_id', 'answer_type')->orderByRaw($query)->get()->toArray();
+            $username = User::where('user_id', $users_id[$i])->pluck('username');
+            $arrUser[$i] = [
+                'user_id' => $users_id[$i],
+                'username' => $username,
+            ];
+            $arrUser[$i]['name'] = User::where('user_id', $users_id[$i])->pluck('name');
+            $arrUser[$i]['person_type1'] = User::where('user_id', $users_id[$i])->pluck('person_type1')->toArray();
+            $arrUser[$i]['person_type2'] = User::where('user_id', $users_id[$i])->pluck('person_type2')->toArray();
+            $arrUser[$i]['person_type3'] = User::where('user_id', $users_id[$i])->pluck('person_type3')->toArray();
+            if($user == null){
+                for($k = 0; $k < count($questions); ++$k){
+                    $arrUser[$i]['question_answer'][$k] = [
+                        'question_id' => $questions[$k],
+                        'answer_type' => '',
+                    ];
+                }
+            }
+            else{
+                for($k = 0, $j = 0; $k < count($questions); ++$k){
+                    if($j != count($user) && $questions[$k] == $user[$j]['question_id']){
+                        $arrUser[$i]['question_answer'][$k] = [
+                            'question_id' => $user[$j]['question_id'],
+                            'answer_type' => $user[$j]['answer_type'],
+                        ];
+                        ++$j;
+                    }
+                    else{
+                        $arrUser[$i]['question_answer'][$k] = [
+                            'question_id' => $questions[$k],
+                            'answer_type' => '',
+                        ];
+                    }
+                }
+            }
+            /*for($j = 0; $j < count($user); ++$j){
+                $arrUser[$i]['question_answer'][$j] = [
+                    'question_id' => $user[$j]['question_id'],
+                    'answer_type' => $user[$j]['answer_type'],
+                ];
+            }*/
+        }
+        return $arrUser;
+    }
+
+    public function getAnswerForExcel3()
+    {
+        $query = "CAST(user_id AS SIGNED)";
+        $users_id = User::where('role', 'user')->where('username','NOT LIKE', '%test%')->select('user_id')->orderByRaw($query)->pluck('user_id')->toArray();
+        $arrUser = [];
+        $query = "CAST(question_id AS SIGNED)";
+        $questions = Question::select('question_id')->orderByRaw($query)->pluck('question_id')->toArray();
+        for($i = 4000; $i < count($users_id); ++$i){
             $query = "CAST(question_id AS SIGNED)";
             $user = Answer::where('user_id', $users_id[$i])->where('answer_type', '!=', 'no')->select('question_id', 'answer_type')->orderByRaw($query)->get()->toArray();
             $username = User::where('user_id', $users_id[$i])->pluck('username');
@@ -159,6 +267,100 @@ class UserController extends Controller
     public function ExportExcel(){
 
         $answer =  $this->getAnswerForExcel();
+        /*if($answer[0]['person_type1'] == null){
+            $answer[0]['person_type1'] = "";
+            $answer[0]['person_type2'] = "";
+            $answer[0]['person_type3'] = "";
+        }*/
+        $sheetArray = array();
+
+        //return $person_type ;
+
+        $sheetArray[] = array('รหัสพนักงาน','ชื่อ','ประเภทที่ 1 ข้อ1','ประเภทที่ 1 ข้อ2','ประเภทที่ 1 ข้อ3','ประเภทที่ 1 ข้อ4','ประเภทที่ 1 ข้อ5','ประเภทที่ 1 ข้อ6','ประเภทที่ 1 ข้อ7','ประเภทที่ 2 ข้อ1','ประเภทที่ 2 ข้อ2','ประเภทที่ 2 ข้อ3','ประเภทที่ 2 ข้อ4','ประเภทที่ 2 ข้อ5','ประเภทที่ 2 ข้อ6','ประเภทที่ 2 ข้อ7','ประเภทที่ 3 ข้อ1','ประเภทที่ 3 ข้อ2','ประเภทที่ 3 ข้อ3','ประเภทที่ 3 ข้อ4','ประเภทที่ 3 ข้อ5','ประเภทที่ 3 ข้อ6','ประเภทที่ 3 ข้อ7','สรุปเป็นประเภท     ');
+        //$Data = user::select('name', 'person_type1', 'person_type2', 'person_type3')->get();
+
+        for($i = 0; $i < count($answer); ++$i){
+            $person_type = implode($answer[$i]['person_type1']);
+            $person_type .= implode($answer[$i]['person_type2']);
+            $person_type .= implode($answer[$i]['person_type3']);
+            if(implode($answer[$i]['person_type1']) == null){
+                $answer[$i]['person_type1'] = "";
+                $answer[$i]['person_type2'] = "";
+                $answer[$i]['person_type3'] = "";
+            }
+            $name = $answer[$i]['name'][0];
+            $username = $answer[$i]['username'][0];
+            $ans1 = $answer[$i]['question_answer'][0]['answer_type'];
+            $sheetArray[] = [$username,$name,$answer[$i]['question_answer'][0]['answer_type'],$answer[$i]['question_answer'][1]['answer_type'],$answer[$i]['question_answer'][2]['answer_type']
+                ,$answer[$i]['question_answer'][3]['answer_type'],$answer[$i]['question_answer'][4]['answer_type'],$answer[$i]['question_answer'][5]['answer_type']
+                ,$answer[$i]['question_answer'][6]['answer_type'],$answer[$i]['question_answer'][7]['answer_type'],$answer[$i]['question_answer'][8]['answer_type']
+                ,$answer[$i]['question_answer'][9]['answer_type'],$answer[$i]['question_answer'][10]['answer_type'],$answer[$i]['question_answer'][11]['answer_type']
+                ,$answer[$i]['question_answer'][12]['answer_type'],$answer[$i]['question_answer'][13]['answer_type'],$answer[$i]['question_answer'][14]['answer_type']
+                ,$answer[$i]['question_answer'][15]['answer_type'],$answer[$i]['question_answer'][16]['answer_type'],$answer[$i]['question_answer'][17]['answer_type']
+                ,$answer[$i]['question_answer'][18]['answer_type'],$answer[$i]['question_answer'][19]['answer_type'],$answer[$i]['question_answer'][20]['answer_type']
+                ,$person_type];
+            //return $sheetArray;
+        }
+        //return $sheetArray;
+        Excel::create('users', function($excel) use($sheetArray) {
+            $excel->sheet('Sheet1', function($sheet) use($sheetArray) {
+                $sheet->fromArray($sheetArray);
+            });
+        })->export('xls');
+
+        return 'finish';
+    }
+
+    public function ExportExcel2(){
+
+        $answer =  $this->getAnswerForExcel2();
+        /*if($answer[0]['person_type1'] == null){
+            $answer[0]['person_type1'] = "";
+            $answer[0]['person_type2'] = "";
+            $answer[0]['person_type3'] = "";
+        }*/
+        $sheetArray = array();
+
+        //return $person_type ;
+
+        $sheetArray[] = array('รหัสพนักงาน','ชื่อ','ประเภทที่ 1 ข้อ1','ประเภทที่ 1 ข้อ2','ประเภทที่ 1 ข้อ3','ประเภทที่ 1 ข้อ4','ประเภทที่ 1 ข้อ5','ประเภทที่ 1 ข้อ6','ประเภทที่ 1 ข้อ7','ประเภทที่ 2 ข้อ1','ประเภทที่ 2 ข้อ2','ประเภทที่ 2 ข้อ3','ประเภทที่ 2 ข้อ4','ประเภทที่ 2 ข้อ5','ประเภทที่ 2 ข้อ6','ประเภทที่ 2 ข้อ7','ประเภทที่ 3 ข้อ1','ประเภทที่ 3 ข้อ2','ประเภทที่ 3 ข้อ3','ประเภทที่ 3 ข้อ4','ประเภทที่ 3 ข้อ5','ประเภทที่ 3 ข้อ6','ประเภทที่ 3 ข้อ7','สรุปเป็นประเภท     ');
+        //$Data = user::select('name', 'person_type1', 'person_type2', 'person_type3')->get();
+
+        for($i = 0; $i < count($answer); ++$i){
+            $person_type = implode($answer[$i]['person_type1']);
+            $person_type .= implode($answer[$i]['person_type2']);
+            $person_type .= implode($answer[$i]['person_type3']);
+            if(implode($answer[$i]['person_type1']) == null){
+                $answer[$i]['person_type1'] = "";
+                $answer[$i]['person_type2'] = "";
+                $answer[$i]['person_type3'] = "";
+            }
+            $name = $answer[$i]['name'][0];
+            $username = $answer[$i]['username'][0];
+            $ans1 = $answer[$i]['question_answer'][0]['answer_type'];
+            $sheetArray[] = [$username,$name,$answer[$i]['question_answer'][0]['answer_type'],$answer[$i]['question_answer'][1]['answer_type'],$answer[$i]['question_answer'][2]['answer_type']
+                ,$answer[$i]['question_answer'][3]['answer_type'],$answer[$i]['question_answer'][4]['answer_type'],$answer[$i]['question_answer'][5]['answer_type']
+                ,$answer[$i]['question_answer'][6]['answer_type'],$answer[$i]['question_answer'][7]['answer_type'],$answer[$i]['question_answer'][8]['answer_type']
+                ,$answer[$i]['question_answer'][9]['answer_type'],$answer[$i]['question_answer'][10]['answer_type'],$answer[$i]['question_answer'][11]['answer_type']
+                ,$answer[$i]['question_answer'][12]['answer_type'],$answer[$i]['question_answer'][13]['answer_type'],$answer[$i]['question_answer'][14]['answer_type']
+                ,$answer[$i]['question_answer'][15]['answer_type'],$answer[$i]['question_answer'][16]['answer_type'],$answer[$i]['question_answer'][17]['answer_type']
+                ,$answer[$i]['question_answer'][18]['answer_type'],$answer[$i]['question_answer'][19]['answer_type'],$answer[$i]['question_answer'][20]['answer_type']
+                ,$person_type];
+            //return $sheetArray;
+        }
+        //return $sheetArray;
+        Excel::create('users', function($excel) use($sheetArray) {
+            $excel->sheet('Sheet1', function($sheet) use($sheetArray) {
+                $sheet->fromArray($sheetArray);
+            });
+        })->export('xls');
+
+        return 'finish';
+    }
+
+    public function ExportExcel3(){
+
+        $answer =  $this->getAnswerForExcel3();
         /*if($answer[0]['person_type1'] == null){
             $answer[0]['person_type1'] = "";
             $answer[0]['person_type2'] = "";

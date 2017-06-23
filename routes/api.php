@@ -46,3 +46,8 @@ Route::get('/answer/check/{id}', 'AnswerController@getAnswerByID');
 
 Route::get('/ExportExcel','UserController@ExportExcel');
 
+Route::get('/ExportExcel2','UserController@ExportExcel2');
+
+Route::get('/ExportExcel3','UserController@ExportExcel3');
+
+
