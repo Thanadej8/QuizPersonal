@@ -12,7 +12,22 @@
                         /
                         <span style="color:red;margin-left: 10px">คนที่ยังไม่ได้ทำ : {{totelPerson.all_user - totelPerson.not_finish - totelPerson.finish}}</span>
                     </h4>
-                    <a role="button" class="btn btn-success"  style="margin: 15px auto;display: block"  href="/index.php/api/ExportExcel">โหลดไฟล์ Excel ข้อมูลตารางนี้</a>
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <a role="button" class="btn btn-success"  style="margin: 15px auto;display: block"  href="/index.php/api/ExportExcel">โหลดไฟล์ Excel 1-2000 คน</a>
+
+                        </div>
+                        <div class="col-md-4">
+                            <a role="button" class="btn btn-success"  style="margin: 15px auto;;display: block"  href="/index.php/api/ExportExcel2">โหลดไฟล์ Excel 2001-4000 คน</a>
+
+                        </div>
+                        <div class="col-md-4">
+                            <a role="button" class="btn btn-success"  style="margin: 15px auto;;display: block"  href="/index.php/api/ExportExcel3">โหลดไฟล์ Excel 4001-คนสุดท้ายของระบบ</a>
+
+                        </div>
+
+                    </div>
 
                     <pre>Page: {{bigCurrentPage}} / {{totalItems}}</pre>
                     <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true" rotate="false"></ul>
