@@ -302,7 +302,7 @@ class UserController extends Controller
             //return $sheetArray;
         }
         //return $sheetArray;
-        Excel::create('users', function($excel) use($sheetArray) {
+        Excel::create('user1-2000', function($excel) use($sheetArray) {
             $excel->sheet('Sheet1', function($sheet) use($sheetArray) {
                 $sheet->fromArray($sheetArray);
             });
@@ -349,7 +349,7 @@ class UserController extends Controller
             //return $sheetArray;
         }
         //return $sheetArray;
-        Excel::create('users', function($excel) use($sheetArray) {
+        Excel::create('user2001-4000', function($excel) use($sheetArray) {
             $excel->sheet('Sheet1', function($sheet) use($sheetArray) {
                 $sheet->fromArray($sheetArray);
             });
@@ -396,7 +396,7 @@ class UserController extends Controller
             //return $sheetArray;
         }
         //return $sheetArray;
-        Excel::create('users', function($excel) use($sheetArray) {
+        Excel::create('user4001-finish', function($excel) use($sheetArray) {
             $excel->sheet('Sheet1', function($sheet) use($sheetArray) {
                 $sheet->fromArray($sheetArray);
             });
